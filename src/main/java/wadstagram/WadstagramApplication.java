@@ -1,0 +1,12 @@
+package wadstagram;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class WadstagramApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(WadstagramApplication.class, args);
+    }
+}
