@@ -8,6 +8,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Image extends AbstractPersistable<Long> {
+
+    @OneToMany(mappedBy = "image")
+    private List<Like> likes;
     
     private String name;
     
