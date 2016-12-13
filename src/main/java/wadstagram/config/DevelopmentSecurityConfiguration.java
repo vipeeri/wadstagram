@@ -31,7 +31,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll().logoutSuccessUrl("/login");
     }
 
     @Autowired

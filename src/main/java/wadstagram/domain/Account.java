@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,8 +15,10 @@ import wadstagram.service.AccountStatusService;
 @Entity
 public class Account extends AbstractPersistable<Long> {
     
+    @NotEmpty
     private String username;
     
+    @NotEmpty
     private String password;
     
     @OneToMany(fetch=FetchType.EAGER)

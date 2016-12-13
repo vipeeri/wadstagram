@@ -9,9 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import wadstagram.domain.Account;
+import wadstagram.service.AccountService;
 
 @Controller
 public class DefaultController {
+
+    @Autowired
+    AccountService accountService;
 
     @RequestMapping("*")
     public String defaultGet() {
