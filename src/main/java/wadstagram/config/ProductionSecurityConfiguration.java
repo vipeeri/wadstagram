@@ -29,7 +29,7 @@ public class ProductionSecurityConfiguration extends WebSecurityConfigurerAdapte
                         .anyRequest().authenticated()
                         .and()
                     .formLogin()
-                        .loginPage("/signin").permitAll()
+                        .loginPage("/login").permitAll()
                         .and()
                     .logout().permitAll();
     }
