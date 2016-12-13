@@ -34,7 +34,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
                         .and()
                     .logout().permitAll().logoutSuccessUrl("/login");
         
-        http.csrf().ignoringAntMatchers("/logout", "/login", "/account/register");
+        http.csrf().ignoringAntMatchers("/logout", "/login");
     }
 
     @Autowired

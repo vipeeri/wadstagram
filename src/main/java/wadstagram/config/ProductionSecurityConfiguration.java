@@ -34,7 +34,7 @@ public class ProductionSecurityConfiguration extends WebSecurityConfigurerAdapte
                         .and()
                     .logout().permitAll().logoutSuccessUrl("/login");
         
-        http.csrf().ignoringAntMatchers("/logout", "/login", "/account/register");
+        http.csrf().ignoringAntMatchers("/logout", "/login");
     }
 
     @Autowired
