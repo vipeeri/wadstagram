@@ -26,6 +26,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .authorizeRequests()
                     .antMatchers("/js/**").permitAll()
                     .antMatchers("/css/**").permitAll()
+                    .antMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                         .and()
                     .formLogin()
@@ -33,7 +34,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
                         .and()
                     .logout().permitAll().logoutSuccessUrl("/login");
         
-        http.csrf().ignoringAntMatchers("/logout");
+        http.csrf().ignoringAntMatchers("/logout", "/login", "/account/register");
     }
 
     @Autowired

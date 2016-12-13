@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>wadstagram - login</title>
+        <link rel="stylesheet" href="/css/login.css" type="text/css"/>
+    </head>
+
+    <body>
+        <div class="login-page">
+            <div class="form">
+                <form method="POST" th:action="@{/register}" th:object="${account}">                
+                    <input th:field="*{username}" type="text" placeholder="username"/>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"/>
+                    <input th:field="*{password}" type="password" placeholder="password"/>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
+                    <button type="submit">create</button>
+                    <p class="message">Already registered? <a href="/login">Sign In</a></p>
+                </form>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    </body>
+</html>
