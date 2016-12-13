@@ -31,7 +31,9 @@ public class ProductionSecurityConfiguration extends WebSecurityConfigurerAdapte
                     .formLogin()
                         .loginPage("/login").permitAll()
                         .and()
-                    .logout().permitAll();
+                    .logout().permitAll().logoutSuccessUrl("/login");
+        
+        http.csrf().ignoringAntMatchers("/logout");
     }
 
     @Autowired
