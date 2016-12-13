@@ -2,10 +2,9 @@ package wadstagram.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import wadstagram.domain.Account;
+import wadstagram.domain.Image;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface ImageRepository extends JpaRepository<Image, Long> {
     
-    public Account findByUsername(String username);
 }
