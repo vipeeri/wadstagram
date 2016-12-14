@@ -1,4 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+
+* {
+    margin-top: 0; 
+    margin-bottom: 0;
+    padding: 0;
+}
 
 .login-page {
   width: 360px;
@@ -8,7 +15,7 @@
 .form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: #808080;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -30,27 +37,27 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #00FFFF;
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
+  color: #808080;
+  font-size: 16px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
 
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: #00E6E6;
 }
 .form .message {
   margin: 15px 0 0;
-  color: #b3b3b3;
+  color: #F2F2F2;
   font-size: 12px;
 }
 .form .message a {
-  color: #4CAF50;
+  color: #00FFFF;
   text-decoration: none;
 }
 .container {
@@ -84,14 +91,22 @@
   text-decoration: none;
 }
 .container .info span .fa {
-  color: #EF3B3A;
+  color: #66FFFF;
+}
+.header {
+    top: 70px;
+    position: relative;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 120px;
+    color: #00FFFF;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background: #FFFAFA; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #666666, #B3B3B3);
+  background: -moz-linear-gradient(right, #666666, #B3B3B3);
+  background: -o-linear-gradient(right, #666666, #B3B3B3);
+  background: linear-gradient(to left, #666666, #B3B3B3);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
