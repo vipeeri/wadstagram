@@ -36,11 +36,12 @@ public class ImageController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String addImage(@RequestParam("image") MultipartFile received) throws IOException {
-        if (!received.getContentType().equals("image/jpg")) {
+        if (!received.getContentType().equals("image/jpeg")) {
             return "redirect:/";
         }
 
         Image image = imageService.createImage(received, new Image(), new ImageBytes());
-        return "redirect:/image/" + image.getId();
+        //return "redirect:/image/" + image.getId();
+        return "redirect:/";
     }
 }

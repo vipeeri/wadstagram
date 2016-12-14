@@ -6,12 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import wadstagram.service.AccountService;
+import wadstagram.service.ImageService;
 
 @Controller
 public class DefaultController {
 
     @Autowired
     AccountService accountService;
+    
+    @Autowired
+    ImageService imageService;
 
     @RequestMapping("*")
     public String defaultGet() {
@@ -21,6 +25,7 @@ public class DefaultController {
     @RequestMapping("/")
     public String root(Model model) {
         model.addAttribute("account", accountService.findUserByName(SecurityContextHolder.getContext().getAuthentication().getName()));
+        model.addAttribute("images", imageService.getAllImages());
         return "index";
     }
 }
