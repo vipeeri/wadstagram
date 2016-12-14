@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Image extends AbstractPersistable<Long> {
 
     @OneToMany(mappedBy = "image")
-    private List<Like> likes;
+    private List<Heart> likes;
     
     private String name;
     

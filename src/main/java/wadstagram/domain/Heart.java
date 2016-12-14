@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-public class Like extends AbstractPersistable<Long> {
+public class Heart extends AbstractPersistable<Long> {
     
     @ManyToOne
     private Image image;
