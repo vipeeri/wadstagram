@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import wadstagram.domain.Account;
-import wadstagram.repository.AccountRepository;
 import wadstagram.service.AccountService;
 
 @Controller
@@ -19,12 +18,9 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
-    @Autowired
-    AccountRepository accountRepository;
-
     @RequestMapping(value = "/account/{id}", method = RequestMethod.GET)
-    public String accountInfo(@PathVariable Long id) {
-
+    public String accountInfo(@PathVariable Long id, Model model) {
+        model.addAttribute("account", accountService.getUserById(id));
         return "account";
     }
 
@@ -42,7 +38,7 @@ public class AccountController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerPost(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult) {
 
-       if (accountRepository.findByUsername(account.getUsername()) != null || bindingResult.hasErrors()) {
+       if (accountService.getUserByName(account.getUsername()) != null || bindingResult.hasErrors()) {
             return "/register";
         }
         accountService.createAccount(account.getUsername(), account.getPassword(), "USER");

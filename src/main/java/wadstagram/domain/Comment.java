@@ -19,4 +19,13 @@ public class Comment extends AbstractPersistable<Long> {
     private Date postedOn;
     
     private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
 }

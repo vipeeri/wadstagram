@@ -30,8 +30,11 @@ public class AccountService {
         return accountRepository.save(new Account(username, passwordEncoder.encode(password), statuses));
     }
     
-    public Account findUserByName(String username) {
+    public Account getUserByName(String username) {
         return accountRepository.findByUsername(username);
     }
-
+    
+        public Account getUserById(Long id) {
+        return accountRepository.findOne(id);
+    }
 }

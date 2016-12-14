@@ -13,5 +13,4 @@ public class Heart extends AbstractPersistable<Long> {
     
     @OneToOne
     private Account giver;
-    
 }

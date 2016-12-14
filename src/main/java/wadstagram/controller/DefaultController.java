@@ -18,13 +18,13 @@ public class DefaultController {
     ImageService imageService;
 
     @RequestMapping("*")
-    public String defaultGet() {
+    public String defaultResponse() {
         return "redirect:/";
     }
 
     @RequestMapping("/")
     public String root(Model model) {
-        model.addAttribute("account", accountService.findUserByName(SecurityContextHolder.getContext().getAuthentication().getName()));
+        model.addAttribute("account", accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName()));
         model.addAttribute("images", imageService.getAllImages());
         return "index";
     }

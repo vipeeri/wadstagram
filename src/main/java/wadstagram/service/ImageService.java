@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import wadstagram.domain.Comment;
 import wadstagram.domain.Image;
 import wadstagram.domain.ImageBytes;
 import wadstagram.repository.ImageBytesRepository;
@@ -42,5 +43,13 @@ public class ImageService {
 
     public byte[] getImageData(Long id) {
         return this.getImage(id).getBytes().get();
+    }
+    
+    public int getHeartAmount(Long id) {
+        return this.getImage(id).getHearts().size();
+    }
+    
+    public List<Comment> getComments(Long id) {
+        return this.getImage(id).getComments();
     }
 }
