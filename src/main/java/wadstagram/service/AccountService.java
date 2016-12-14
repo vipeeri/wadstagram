@@ -29,5 +29,9 @@ public class AccountService {
 
         return accountRepository.save(new Account(username, passwordEncoder.encode(password), statuses));
     }
+    
+    public Account findUserByName(String username) {
+        return accountRepository.findByUsername(username);
+    }
 
 }
