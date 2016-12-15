@@ -12,7 +12,7 @@ public class AccountStatus extends AbstractPersistable<Long> {
     @NotEmpty
     private String name;
     
-    @OneToMany(mappedBy = "statuses")
+    @OneToMany(mappedBy = "status")
     private List<Account> accounts;
 
     public AccountStatus() {
