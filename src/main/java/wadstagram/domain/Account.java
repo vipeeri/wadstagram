@@ -1,10 +1,7 @@
 package wadstagram.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -17,28 +14,28 @@ public class Account extends AbstractPersistable<Long> {
     @NotEmpty
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<AccountStatus> statuses;
+    @ManyToOne
+    private AccountStatus status;
 
-    public Account(String username, String password, List<AccountStatus> statuses) {
+    public Account(String username, String password, AccountStatus status) {
         this.username = username;
         this.password = password;
-        this.statuses = statuses;
+        this.status = status;
     }
 
     public Account() {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
-    public List<AccountStatus> getStatuses() {
-        return statuses != null ? statuses : new ArrayList<>();
+    public AccountStatus getStatus() {
+        return this.status;
     }
 
     public void setUsername(String username) {
@@ -49,7 +46,7 @@ public class Account extends AbstractPersistable<Long> {
         this.password = password;
     }
 
-    public void setStatuses(List<AccountStatus> statuses) {
-        this.statuses = statuses;
+    public void setStatuses(AccountStatus status) {
+        this.status = status;
     }
 }

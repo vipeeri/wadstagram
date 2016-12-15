@@ -1,6 +1,8 @@
 package wadstagram.domain;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -8,22 +10,29 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class AccountStatus extends AbstractPersistable<Long> {
 
     @NotEmpty
-    private String status;
+    private String name;
+    
+    @OneToMany(mappedBy = "statuses")
+    private List<Account> accounts;
 
     public AccountStatus() {
     }
     
     public AccountStatus(String status) {
-        this.status = status;
+        this.name = status;
     }
 
-    public String getStatus() {
-        return status;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object obj) {
         AccountStatus compared = (AccountStatus) obj;
-        return this.status.equals(compared.getStatus());
+        return this.name.equals(compared.getName());
     }
 }

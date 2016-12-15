@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import wadstagram.domain.Account;
-import wadstagram.domain.AccountStatus;
 import wadstagram.repository.AccountRepository;
 
 @Service
@@ -23,12 +22,10 @@ public class AccountUserDetailsService implements UserDetailsService {
         if (account == null) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
-        
+
         ArrayList<SimpleGrantedAuthority> auths = new ArrayList();
-        
-        for(AccountStatus accountStatus : account.getStatuses()) {
-            auths.add(new SimpleGrantedAuthority(accountStatus.getStatus()));
-        }
+
+        auths.add(new SimpleGrantedAuthority(account.getStatus().getName()));
 
         return new org.springframework.security.core.userdetails.User(
                 account.getUsername(),

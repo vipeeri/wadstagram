@@ -20,21 +20,15 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    public Account createAccount(String username, String password, String... auths) {
-        ArrayList<AccountStatus> statuses = new ArrayList<>();
-
-        for (String auth : auths) {
-            statuses.add(accountStatusService.getStatus(auth));
-        }
-
-        return accountRepository.save(new Account(username, passwordEncoder.encode(password), statuses));
+    public Account createAccount(String username, String password, String auth) {
+        return accountRepository.save(new Account(username, passwordEncoder.encode(password), accountStatusService.getStatus(auth)));
     }
-    
+
     public Account getUserByName(String username) {
         return accountRepository.findByUsername(username);
     }
-    
-        public Account getUserById(Long id) {
+
+    public Account getUserById(Long id) {
         return accountRepository.findOne(id);
     }
 }
