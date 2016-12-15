@@ -9,5 +9,5 @@ import wadstagram.domain.AccountStatus;
 public interface AccountStatusRepository extends JpaRepository<AccountStatus, Long> {
     
     @Cacheable(value = "accountStatuses")
-    public AccountStatus findByStatus(String status);
+    public AccountStatus findByName(String name);
 }
