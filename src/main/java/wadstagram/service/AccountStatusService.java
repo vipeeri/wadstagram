@@ -12,7 +12,7 @@ public class AccountStatusService {
     AccountStatusRepository accountStatusRepository;
     
     public AccountStatus getStatus(String status) {
-        AccountStatus found = accountStatusRepository.findByStatus(status);
+        AccountStatus found = accountStatusRepository.findByName(status);
         return found != null ? found : accountStatusRepository.save(new AccountStatus(status));
     }    
 }
