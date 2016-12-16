@@ -25,7 +25,7 @@ public class AccountUserDetailsService implements UserDetailsService {
 
         ArrayList<SimpleGrantedAuthority> auths = new ArrayList();
 
-        auths.add(new SimpleGrantedAuthority(account.getStatus().getName()));
+        auths.add(new SimpleGrantedAuthority(account.getStatus()));
 
         return new org.springframework.security.core.userdetails.User(
                 account.getUsername(),

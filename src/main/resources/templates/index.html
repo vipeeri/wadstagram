@@ -39,7 +39,7 @@
                     <hr/>
                     <h3>Test</h3>
                     <p th:each="image : ${images}">
-                        <img th:src="@{image/__${image.id}__/data}" alt="placeholder"/>
+                        <!-- <a th:href="@{/image/{id}(id=${image.id}"> --> <img th:src="@{image/__${image.id}__/data}" alt="placeholder"/> <!-- </a> -->
                     </p>
                     <p>Lorem ipsum...</p>
                 </div>

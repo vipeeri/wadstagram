@@ -1,7 +1,6 @@
 package wadstagram.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -14,16 +13,23 @@ public class Account extends AbstractPersistable<Long> {
     @NotEmpty
     private String password;
 
-    @ManyToOne
-    private AccountStatus status;
-
-    public Account(String username, String password, AccountStatus status) {
+    @NotEmpty
+    private String status;
+    
+    public Account(String username, String password, String status) {
         this.username = username;
         this.password = password;
         this.status = status;
     }
+    
+       public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.status = "USER";
+    }
 
     public Account() {
+        this.status = "USER";
     }
 
     public String getUsername() {
@@ -34,7 +40,7 @@ public class Account extends AbstractPersistable<Long> {
         return this.password;
     }
 
-    public AccountStatus getStatus() {
+    public String getStatus() {
         return this.status;
     }
 
@@ -46,7 +52,7 @@ public class Account extends AbstractPersistable<Long> {
         this.password = password;
     }
 
-    public void setStatuses(AccountStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

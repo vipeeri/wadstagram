@@ -39,6 +39,7 @@ public class AccountController {
     public String registerPost(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult) {
 
        if (accountService.getUserByName(account.getUsername()) != null || bindingResult.hasErrors()) {
+           System.out.println(bindingResult.toString());
             return "/register";
         }
         accountService.createAccount(account.getUsername(), account.getPassword(), "USER");
