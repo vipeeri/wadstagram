@@ -1,13 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+
 .navbar {
+    background-color: #B3B3B3;
     margin-bottom: 0;
     border-radius: 0;
 }
 .row.content {height: 450px}
 
+.navbar-brand{
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    color: #00FFFF;
+}
+
+.navbar-nav {
+    text-align: center;
+    font-size: 20px;
+    color: #00FFFF;
+}
+
 .sidenav {
     padding-top: 20px;
-    background-color: #f1f1f1;
+    background-color: #B2B2B2;
     height: 100%;
+}
+
+.row {
+    overflow: visible;
+}
+.row {
+    overflow: hidden;
+}
+ul.polaroids a:after {
+  content: attr(title);
+}
+
+ul.polaroids a {
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+}
+ 
+/* Rotate all even images 2 degrees */
+ul.polaroids li:nth-child(even) a {
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+}
+ 
+/* Don't rotate every third image, but offset its position */
+ul.polaroids li:nth-child(3n) a {
+  -webkit-transform: none;
+  -moz-transform: none;
+  position: relative;
+  top: -5px;
+}
+ 
+/* Rotate every fifth image by 5 degrees and offset it */
+ul.polaroids li:nth-child(5n) a {
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  position: relative;
+  right: 5px;
+}
+ 
+/* Keep default rotate for every eighth, but offset it */
+ul.polaroids li:nth-child(8n) a {
+  position: relative;
+  top: 8px;
+  right: 5px;
+}
+
+ul.polaroids a:hover {
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
+
+body {background-color: #B5B5B5;
+}
+section[role="main"] p a,li a{
+    color:#7E3200;
+}
+section[role="main"] p a:hover,li a:hover{
+    color:#461C00;
+}
+.polaroids li:nth-child(n+5){
+    display:none;
+}
+ul.polaroids li{
+    display:inline;
+}
+ul.polaroids a{
+    background:#fff;
+    display:inline;
+    float:left;
+    margin:0 0 27px 30px;
+    width:auto;
+    padding:10px 10px 15px;
+    text-align:center;
+    font-family:"Marker Felt",sans-serif;
+    text-decoration:none;
+    color:#333;
+    font-size:18px;
+    -webkit-box-shadow:0 3px 6px rgba(0,0,0,.25);
+    -moz-box-shadow:0 3px 6px rgba(0,0,0,.25);
+    -webkit-transform:rotate(-2deg);
+    -webkit-transition:-webkit-transform .15s linear;
+    -moz-transform:rotate(-2deg);
+}
+ul.polaroids li{
+    padding-left:0;
 }
 
 @media screen and (max-width: 767px) {
