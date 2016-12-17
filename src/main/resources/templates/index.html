@@ -10,50 +10,49 @@
         <script src="/js/logout.js"/>
         <link rel="stylesheet" href="/css/index.css"/>
     </head>
+    
     <body>
         <form id="logoutform" method="post" action="/logout"/>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <span class="navbar-brand">Wadstagram</span>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li> <a onclick="logout()">Logout</a></li> 
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="navbar-header">
+            <span class="navbar-brand">Wadstagram</span>
+                </nav>
+		<ul class="navigation">
+                <li class="active"><a href="/">Home</a></li>
+                <li> <a onclick="logout()">Logout</a></li> 
+                </ul>
+		
+<section>
+<div class="row content">
+    <h1>My profile -- Tähän käyttäjätunnus?</h1>
+            <form method="POST" th:action="@{/image}" enctype="multipart/form-data">
+                    <label for="image">Image</label><input type="file" name="image" id="image"/><br/>
+                    <input type="submit" value="Add!"/>
+            </form>
 
-        <div class="container-fluid text-center">    
-            <div class="row content">
-                <div class="col-sm-2 sidenav"/>
-                <div class="col-sm-8 text-left"> 
-                    <h1>My profile -- Tähän käyttäjätunnus?</h1>
-                    <form method="POST" th:action="@{/image}" enctype="multipart/form-data">
-                        <label for="image">Image</label><input type="file" name="image" id="image"/><br/>
-                        <input type="submit" value="Add!"/>
-                    </form>
-                    
-                    <p>Piip! </p>
-                    <h3>Test</h3>
-
-                    <p th:each="image : ${images}">
-                        <!-- <a th:href="@{/image/{id}(id=${image.id}"> --> <img th:src="@{image/__${image.id}__/data}" alt="placeholder"/> <!-- </a> -->
-                    </p>
-                    <div class="row">
-                    <ul class="polaroid">
-                <li>
-                    <a th:href="@{/image/{id}(id=${image.id}" title="image_id">
-                    <img th:src="@{image/__${image.id}__/data}" alt="Kuvateksti?"/>
-                    </a>
-                </li>
-            </ul>
-            </div>
-                </div>
-                <div class="col-sm-2 sidenav"/>
-            </div>
+            <h3>My pictures</h3>
+            
+            <div class="row">
+            <ul class="polaroids">
+        <li>
+            <a>
+            <img src="1.jpg" alt="Ranska" title="Eiffelin torni" style="width:150px;height:150px;"</img>
+            </a>
+        </li>
+        </ul>
         </div>
+            <p th:each="image : ${images}">
+                    <!-- <a th:href="@{/image/{id}(id=${image.id}"> --> <img th:src="@{image/__${image.id}__/data}" alt="placeholder"/> <!-- </a> -->
+            </p>
+            <div class="row">
+            <ul class="polaroids">
+        <div>
+            <a th:href="@{/image/{id}(id=${image.id}" title="teksti">
+            <img th:src="@{image/__${image.id}__/data}" alt="image_id" style= "width:150px;height:150px;"/>
+            </a>
+        </div>
+        </ul>
+        </div>
+        </div>
+        </section>
     </body>
 </html>
