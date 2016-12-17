@@ -34,7 +34,7 @@
                 <div class="row">
                     <ul class="polaroids">
                         <li th:each="image : ${images}">
-                             <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{image/{id}/data(id=${image.id})}" alt="placeholder"/> </a> 
+                             <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{image/{id}/data(id=${image.id})}" alt="placeholder" style="width: 100px; height: 100px;"/> </a> 
                         </li>
                     </ul>
                 </div>
