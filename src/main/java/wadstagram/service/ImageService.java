@@ -3,8 +3,10 @@ package wadstagram.service;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import wadstagram.domain.Account;
 import wadstagram.domain.Comment;
 import wadstagram.domain.Image;
 import wadstagram.domain.ImageBytes;
@@ -20,6 +22,9 @@ public class ImageService {
     @Autowired
     ImageBytesRepository imageBytesRepository;
 
+    @Autowired
+    AccountService accountService;
+    
     public Image getImage(Long id) {
         return imageRepository.findOne(id);
     }
@@ -29,12 +34,14 @@ public class ImageService {
     }
 
     public Image createImage(MultipartFile received, Image image, ImageBytes content) throws IOException {
+        Account owner = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         image = imageRepository.save(image);
         content = imageBytesRepository.save(content);
         image.setName(received.getOriginalFilename());
         image.setLength(received.getSize());
         image.setType(received.getContentType());
         image.setBytes(content);
+        image.setOwner(owner);
         content.setContent(received.getBytes());
         content.setImage(image);
         imageBytesRepository.save(content);

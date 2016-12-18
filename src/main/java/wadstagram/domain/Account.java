@@ -1,6 +1,8 @@
 package wadstagram.domain;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -15,6 +17,9 @@ public class Account extends AbstractPersistable<Long> {
 
     @NotEmpty
     private String status;
+    
+    @OneToMany(mappedBy = "Owner")
+    private List<Image> images;
     
     public Account(String username, String password, String status) {
         this.username = username;

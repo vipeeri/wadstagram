@@ -24,8 +24,17 @@ public class Comment extends AbstractPersistable<Long> {
         return content;
     }
 
+    public Comment() {
+    }
+
     public Image getImage() {
         return image;
     }
 
+    public Comment(Image image, Account sender, Date postedOn, String content) {
+        this.image = image;
+        this.sender = sender;
+        this.postedOn = postedOn;
+        this.content = content;
+    }
 }

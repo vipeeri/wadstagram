@@ -3,6 +3,7 @@ package wadstagram.domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -10,6 +11,17 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Image extends AbstractPersistable<Long> {
 
+    @ManyToOne
+    private Account Owner;
+
+    public void setOwner(Account Owner) {
+        this.Owner = Owner;
+    }
+
+    public Account getOwner() {
+        return Owner;
+    }
+    
     @OneToMany(mappedBy = "image")
     private List<Heart> hearts;
     
