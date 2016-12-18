@@ -26,10 +26,10 @@ import wadstagram.service.ImageService;
 public class ImageController {
 
     @Autowired
-    ImageService imageService;
+    private ImageService imageService;
     
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @Transactional
     @RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)

@@ -40,7 +40,7 @@ public class AccountController {
 
        if (accountService.getUserByName(account.getUsername()) != null || bindingResult.hasErrors()) {
            System.out.println(bindingResult.toString());
-            return "/register";
+            return "register";
         }
         accountService.createAccount(account.getUsername(), account.getPassword(), "USER");
         return "redirect:/login";
