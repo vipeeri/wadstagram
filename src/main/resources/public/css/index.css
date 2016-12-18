@@ -7,43 +7,43 @@
 }
 
 .navbar-header{
-	position: relative;
-	top: 0px; left: 0; right: 0;
-	height: 120px;
-	background-color: #666666;
-	text-align: center;
-	color: black;
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background-color: #666666;
+    text-align: center;
+    color: black;
 }
 .navbar-brand{
     font-family: 'Great Vibes', cursive;
     font-size: 90px;
-    color: #00FFFF;
+    color: #00FFFF !important;
 }
 .navigation {
-	position: absolute;
-	background-color: #80FFFF;
-	width: 100%;
+    position: relative;
+    background-color: #80FFFF !important;
+    width: 100%;
     font-size: 20px;
-    color: #00FFFF;
+    color: #00FFFF !important;
 }
 
 li  {
     float: left;
     display:inline;
-	color: black;
+    color: black;
 }
 
 li a {
     display: block;
-	color: black !important;
-	padding: 14px 16px;
+    color: black !important;
+    padding: 14px 16px;
     text-align: center;
     text-decoration: none;
 }
 
 li a:hover:not(.active) {
     background-color: #00CCCC;;
-	color: black;
+    color: black;
 }
 
 .active {
@@ -95,19 +95,19 @@ ul.polaroids li:nth-child(8n) a {
   right: 5px;
 }
 
-ul.polaroids a:hover {
+/*ul.polaroids a:hover {
   -webkit-transform: scale(1.25);
   -moz-transform: scale(1.25);
   position: relative;
   z-index: 5;
-}
+}*/
 
 section {
-	position: relative;
-	top: 50px;
-	text-align: center;
+    position: relative;
+    top: 50px;
+    text-align: center;
     color: black;
-	background-color: #B5B5B5;
+    background-color: #B5B5B5;
 }
 
 body {background-color: #B5B5B5;
