@@ -32,14 +32,14 @@
                     <p> Amount of hearts: <span th:text="${hearts}"/> </p>
                     <p> <a th:href="@{/image/{id}/like(id=${image.id})}"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
                     <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}">
-                        Comment <input type="text" name="comment"/>
-                        <input type="submit" value="Submit comment"/>
+                        Comment <input type="text" id="comment" name="comment"/>
+                        <input type="submit" id="comment" value="Submit comment"/>
                     </form>
                     <ul>
-                        <li th:each="comment : ${comments}">
-                            <p> Sender: <span th:text="${comment.sender.username}"/> <br/>
-                                Date: <span th:text="${{comment.postedOn}}"/> <br/>
-                                Content: <span th:text="${comment.content}"/>
+                        <li th:each="comment : ${comments}"> <br/>
+                            <p> <span th:text="${comment.sender.username}"/>
+                               <!-- Date: <span th:text="${{comment.postedOn}}"/> -->
+                               : <span th:text="${comment.content}"/> <br/>
                             </p>
                         </li>
                     </ul>
