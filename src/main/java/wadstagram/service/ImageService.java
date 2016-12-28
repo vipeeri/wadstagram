@@ -28,23 +28,24 @@ public class ImageService {
     public Image getImage(Long id) {
         return imageRepository.findOne(id);
     }
+    
+    public void saveImage(Image image) {
+        imageRepository.save(image);
+    }
 
     public List<Image> getAllImages() {
         return imageRepository.findAll();
     }
 
-    public Image createImage(MultipartFile received, Image image, ImageBytes content) throws IOException {
+    public Image createImage(MultipartFile received, Image image, ImageBytes content, String description) throws IOException {
         Account owner = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
-        image = imageRepository.save(image);
-        content = imageBytesRepository.save(content);
         image.setName(received.getOriginalFilename());
         image.setLength(received.getSize());
         image.setType(received.getContentType());
-        image.setBytes(content);
-        image.setOwner(owner);
         content.setContent(received.getBytes());
-        content.setImage(image);
-        imageBytesRepository.save(content);
+        image.setBytes(imageBytesRepository.save(content));
+        image.setOwner(owner);
+        image.setDescription(description);
         return imageRepository.save(image);
     }
 
@@ -53,7 +54,7 @@ public class ImageService {
     }
     
     public int getHeartAmount(Long id) {
-        return this.getImage(id).getHearts().size();
+        return this.getImage(id).getLikers().size();
     }
     
     public List<Comment> getComments(Long id) {

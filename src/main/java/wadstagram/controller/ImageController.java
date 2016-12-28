@@ -2,9 +2,11 @@ package wadstagram.controller;
 
 import java.io.IOException;
 import java.util.Date;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,16 +29,16 @@ public class ImageController {
 
     @Autowired
     private ImageService imageService;
-    
+
     @Autowired
     private AccountService accountService;
 
-    @Transactional
     @RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
     public String postComment(@PathVariable Long id, @RequestParam String comment) {
         Account sender = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         Image image = imageService.getImage(id);
         image.getComments().add(new Comment(image, sender, new Date(), comment));
+        imageService.saveImage(image);
         return "redirect:/image/" + id;
     }
 
@@ -49,18 +51,37 @@ public class ImageController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "{id}/data", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImageData(@PathVariable Long id) {
-        return imageService.getImageData(id);
+    @RequestMapping(value = "{id}/data", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getImageData(@PathVariable Long id) {
+        Image image = imageService.getImage(id);
+        if (image == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentLength(image.getLength());
+        headers.setContentType(MediaType.parseMediaType(image.getType()));
+        return new ResponseEntity<byte[]>(image.getBytes().get(), headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "{id}/like", method = RequestMethod.GET)
+    public String likeImage(@PathVariable Long id) {
+        Image image = imageService.getImage(id);
+        Account liker = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (!image.getLikers().contains(liker)) {
+            image.getLikers().add(liker);
+        } else {
+            image.getLikers().remove(liker);
+        }
+        imageService.saveImage(image);
+        return "redirect:/image/" + id;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addImage(@RequestParam("image") MultipartFile received) throws IOException {
-        if (!received.getContentType().equals("image/jpeg")) {
+    public String addImage(@RequestParam("image") MultipartFile received, @RequestParam String description) throws IOException {
+        if (!received.getContentType().contains("image")) {
             return "redirect:/";
         }
-
-        Image image = imageService.createImage(received, new Image(), new ImageBytes());
+        Image image = imageService.createImage(received, new Image(), new ImageBytes(), description);
         return "redirect:/image/" + image.getId();
     }
 }

@@ -26,6 +26,7 @@ public class ProductionSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .authorizeRequests()
                     .antMatchers("/js/**").permitAll()
                     .antMatchers("/css/**").permitAll()
+                    .antMatchers("/img/**").permitAll()
                     .antMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                         .and()

@@ -4,9 +4,7 @@
         <title>wadstagram</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
         <script src="/js/logout.js"/>
         <link rel="stylesheet" href="/css/index.css"/>
     </head>
@@ -28,19 +26,21 @@
             <div class="row content">
                 <div class="col-sm-2 sidenav"/>
                 <div class="col-sm-8 text-left"> 
-                    <h1>Picture</h1>
-                    <p> </p>
                     <hr/>
-                    <h3>Test</h3>
+                    <h3 th:text="${image.description}"/>
                     <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder"/>
                     <p> Amount of hearts: <span th:text="${hearts}"/> </p>
+                    <p> <a th:href="@{/image/{id}/like(id=${image.id})}"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
                     <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}">
                         Comment <input type="text" name="comment"/>
                         <input type="submit" value="Submit comment"/>
                     </form>
                     <ul>
                         <li th:each="comment : ${comments}">
-                            <p> <span th:text="${comment.content}"/> </p>
+                            <p> Sender: <span th:tex="${comment.sender.username}"/>
+                                Sender: <span th:tex="${comment.postedOn}"/>
+                                Content: <span th:text="${comment.content}"/>
+                            </p>
                         </li>
                     </ul>
                 </div>

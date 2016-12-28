@@ -3,6 +3,7 @@ package wadstagram.domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -12,20 +13,22 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Image extends AbstractPersistable<Long> {
 
     @ManyToOne
-    private Account Owner;
+    private Account owner;
 
-    public void setOwner(Account Owner) {
-        this.Owner = Owner;
+    public void setOwner(Account owner) {
+        this.owner = owner;
     }
 
     public Account getOwner() {
-        return Owner;
+        return owner;
     }
     
-    @OneToMany(mappedBy = "image")
-    private List<Heart> hearts;
+    @OneToMany
+    private List<Account> likers;
     
     private String name;
+    
+    private String description;
     
     private String type;
     
@@ -45,8 +48,8 @@ public class Image extends AbstractPersistable<Long> {
         return length;
     }
 
-    public List<Heart> getHearts() {
-        return hearts != null ? hearts : new ArrayList<>();
+    public List<Account> getLikers() {
+        return likers != null ? likers : new ArrayList<>();
     }
 
     public String getName() {
@@ -61,6 +64,14 @@ public class Image extends AbstractPersistable<Long> {
         return bytes;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public void setBytes(ImageBytes bytes) {
         this.bytes = bytes;
     }
@@ -69,8 +80,8 @@ public class Image extends AbstractPersistable<Long> {
         this.comments = comments;
     }
 
-    public void setHearts(List<Heart> hearts) {
-        this.hearts = hearts;
+    public void setLikers(List<Account> likers) {
+        this.likers = likers;
     }
 
     public void setLength(Long length) {

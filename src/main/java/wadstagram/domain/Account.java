@@ -18,7 +18,7 @@ public class Account extends AbstractPersistable<Long> {
     @NotEmpty
     private String status;
     
-    @OneToMany(mappedBy = "Owner")
+    @OneToMany(mappedBy = "owner")
     private List<Image> images;
     
     public Account(String username, String password, String status) {
