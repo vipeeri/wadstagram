@@ -10,6 +10,7 @@ import wadstagram.domain.Account;
 import wadstagram.domain.Comment;
 import wadstagram.domain.Image;
 import wadstagram.domain.ImageBytes;
+import wadstagram.repository.CommentRepository;
 import wadstagram.repository.ImageBytesRepository;
 import wadstagram.repository.ImageRepository;
 
@@ -24,6 +25,9 @@ public class ImageService {
 
     @Autowired
     AccountService accountService;
+    
+    @Autowired
+    CommentRepository commentRepository;
     
     public Image getImage(Long id) {
         return imageRepository.findOne(id);
@@ -59,5 +63,11 @@ public class ImageService {
     
     public List<Comment> getComments(Long id) {
         return this.getImage(id).getComments();
+    }
+    
+    public void addCommentToPicture(Image image, Comment comment) {
+        comment = commentRepository.save(comment);
+        image.getComments().add(comment);
+        imageRepository.save(image);
     }
 }

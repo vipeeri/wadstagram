@@ -37,8 +37,8 @@
                     </form>
                     <ul>
                         <li th:each="comment : ${comments}">
-                            <p> Sender: <span th:tex="${comment.sender.username}"/>
-                                Sender: <span th:tex="${comment.postedOn}"/>
+                            <p> Sender: <span th:text="${comment.sender.username}"/> <br/>
+                                Date: <span th:text="${{comment.postedOn}}"/> <br/>
                                 Content: <span th:text="${comment.content}"/>
                             </p>
                         </li>

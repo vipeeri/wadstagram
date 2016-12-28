@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -26,10 +27,12 @@ public class Image extends AbstractPersistable<Long> {
     @OneToMany
     private List<Account> likers;
     
+    @NotEmpty
     private String name;
     
     private String description;
     
+    @NotEmpty
     private String type;
     
     private Long length;
@@ -37,11 +40,15 @@ public class Image extends AbstractPersistable<Long> {
     @OneToOne
     private ImageBytes bytes;
     
-    @OneToMany(mappedBy = "image")
+    @OneToMany(mappedBy = "image", fetch=FetchType.EAGER)
     private List<Comment> comments;
 
     public List<Comment> getComments() {
-        return comments != null ? comments : new ArrayList<>();
+        if(this.comments != null) {
+            return this.comments;
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public Long getLength() {
@@ -49,7 +56,11 @@ public class Image extends AbstractPersistable<Long> {
     }
 
     public List<Account> getLikers() {
-        return likers != null ? likers : new ArrayList<>();
+        if(this.likers != null) {
+            return this.likers;
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public String getName() {

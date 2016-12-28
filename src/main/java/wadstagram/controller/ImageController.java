@@ -37,8 +37,8 @@ public class ImageController {
     public String postComment(@PathVariable Long id, @RequestParam String comment) {
         Account sender = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         Image image = imageService.getImage(id);
-        image.getComments().add(new Comment(image, sender, new Date(), comment));
-        imageService.saveImage(image);
+        Comment newComment = new Comment(image, sender, new Date(), comment);
+        imageService.addCommentToPicture(image, newComment);
         return "redirect:/image/" + id;
     }
 
