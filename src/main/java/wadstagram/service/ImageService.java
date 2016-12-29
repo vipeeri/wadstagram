@@ -1,6 +1,7 @@
 package wadstagram.service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +71,7 @@ public class ImageService {
         image.setType(received.getContentType());
         content.setContent(received.getBytes());
         image.setBytes(imageBytesRepository.save(content));
+        image.setCreatedOn(new Date());
         image.setOwner(owner);
         image.setDescription(description);
         return imageRepository.save(image);

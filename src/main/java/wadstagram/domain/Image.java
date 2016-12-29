@@ -1,12 +1,15 @@
 package wadstagram.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -31,6 +34,17 @@ public class Image extends AbstractPersistable<Long> {
     private String name;
     
     private String description;
+    
+    @Temporal(TemporalType.DATE)
+    private Date createdOn;
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
     
     @NotEmpty
     private String type;

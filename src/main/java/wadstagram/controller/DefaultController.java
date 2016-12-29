@@ -35,20 +35,22 @@ public class DefaultController {
 
     @RequestMapping("/")
     public String root(Model model, @RequestParam(required = false) Long page) {
-        model.addAttribute("account", accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName()));
-        if(page == null || page.intValue() < 1) {
+        if (page == null || page.intValue() < 1) {
             return "redirect:/?page=1";
         }
+        model.addAttribute("account", accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName()));
         int amount = page.intValue();
         double imagesAmount = (double) this.imageService.getImageAmount();
         ArrayList<Integer> pages = new ArrayList<>();
-        int i = 1;
-        while(imagesAmount / (i*10) > 1) {
-            pages.add(i);
-            i++;
+        for (int i = 1;; i++) {
+            if (imagesAmount / (10 * i) <= 1) {
+                pages.add(i);
+                break;
+            } else {
+                pages.add(i);
+            }
         }
-        pages.add(i);
-        model.addAttribute("images", imageService.getImagePage(new PageRequest((amount - 1) * 10, amount * 10, Sort.Direction.DESC, "id")));
+        model.addAttribute("images", imageService.getImagePage(new PageRequest((amount - 1) * 10, amount * 10, Sort.Direction.DESC, "createdOn")));
         model.addAttribute("pages", pages);
         return "index";
     }
