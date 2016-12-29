@@ -26,7 +26,7 @@
             <h2 th:text="${image.description}"/>
             <hr/>
             <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder"/>
-            
+            <p> Owner: <a th:href="@{/account/{id}(id=${image.owner.id})}"> <span th:text="${image.owner.username}"/> </a> </p>
             <p> Amount of hearts: <span th:text="${hearts}"/> </p>
             <p> <a th:href="@{/image/{id}/like(id=${image.id})}"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
             <br/>
