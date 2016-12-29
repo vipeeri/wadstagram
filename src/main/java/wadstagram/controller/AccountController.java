@@ -19,10 +19,10 @@ import wadstagram.service.ImageService;
 public class AccountController {
 
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @Autowired
-    ImageService imageService;
+    private ImageService imageService;
 
     @PostConstruct
     public void init() {

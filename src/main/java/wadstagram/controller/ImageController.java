@@ -53,7 +53,7 @@ public class ImageController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String getImage(@PathVariable Long id, Model model) {
-        if(imageService.getImage(id) == null) {
+        if (imageService.getImage(id) == null) {
             return "redirect:/";
         }
         model.addAttribute("image", imageService.getImage(id));
@@ -78,7 +78,7 @@ public class ImageController {
     @RequestMapping(value = "{id}/like", method = RequestMethod.POST)
     public String likeImage(@PathVariable Long id) {
         Image image = imageService.getImage(id);
-        if(image == null) {
+        if (image == null) {
             return "redirect:/image/" + id;
         }
         Account liker = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());

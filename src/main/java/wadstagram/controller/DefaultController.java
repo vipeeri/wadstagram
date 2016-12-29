@@ -17,10 +17,10 @@ import wadstagram.service.ImageService;
 public class DefaultController {
 
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @Autowired
-    ImageService imageService;
+    private ImageService imageService;
 
     @RequestMapping("*")
     public String defaultResponse() {
