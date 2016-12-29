@@ -16,7 +16,7 @@
         <nav class="navbar-nav">
             <ul class="navigation">
                 <li><a href="/">Home</a></li>
-                <li><a href="/">Profile</a></li>
+                <li><a th:href="@{/account/{id}(id=${image.owner.id})}">Profile</a></li>
                 <li> <a onclick="logout()">Logout</a></li> 
             </ul>
         </nav>
@@ -31,9 +31,9 @@
             <p> <a onclick="like()"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
             <p sec:authorize="hasAuthority('ADMIN')"> <a onclick="deleteComment()">Delete picture</a> </p>
             <br/>
-            <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}">
-                Comment <input type="text" name="comment"/>
-                <input type="submit" value="Submit comment"/>
+            <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}" id="commentform">
+                Comment: <input type="text" name="comment" id="comment"/>
+                <input onclick="makeComment()" value="Submit comment"/>
             </form>
             <ul style="list-style-type:none">
                 <li th:each="comment : ${comments}"> <br/>
@@ -56,6 +56,15 @@
         <script sec:authorize="hasAuthority('ADMIN')">
             function deleteComment() {
                 document.getElementById("deleteform").submit();
+            }
+        </script>
+        <script>
+            function makeComment() {
+                if (document.getElementById("comment").value.length !== 0) {
+                    document.getElementById("commentform").submit();
+                } else {
+                    alert("Comment can't be empty.");
+                }
             }
         </script>
     </body>

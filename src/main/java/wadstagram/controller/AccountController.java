@@ -52,8 +52,7 @@ public class AccountController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerPost(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult) {
         if (accountService.getUserByName(account.getUsername()) != null || bindingResult.hasErrors()) {
-            System.out.println(bindingResult.toString());
-            return "register";
+            return "redirect:/register?error";
         }
         accountService.createAccount(account.getUsername(), account.getPassword(), "USER");
         return "redirect:/login";

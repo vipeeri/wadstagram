@@ -8,36 +8,48 @@
     </head>
 
     <body>
-            <nav class="navbar-header">
-                <span class="navbar-brand">Wadstagram</span>
-            </nav>
-            <nav class="navbar-nav">
+        <nav class="navbar-header">
+            <span class="navbar-brand">Wadstagram</span>
+        </nav>
+        <nav class="navbar-nav">
             <ul class="navigation">
                 <li><a href="/">Home</a></li>
                 <li><a th:href="@{/account/{id}(id=${account.id})}">Profile</a></li>
                 <li><a onclick="logout()">Logout</a></li> 
             </ul>
-            </nav>
+        </nav>
         <fieldset>
             <legend>Submit a new picture</legend>
-            <form method="POST" th:action="@{/image}" enctype="multipart/form-data">
+            <form method="POST" th:action="@{/image}" enctype="multipart/form-data" id="imageform">
                 <label for="description">Description   </label> <input type="text" name="description" id="description"/><br/>
                 <label for="image">Image   </label><input type="file" name="image" id="image"/><br/>
-                <input type="submit" value="Add!"/>
+                <input onclick="submitCheck()" value="Add!"/>
             </form>
-            </fieldset>
-        
-        
-    <h1>Newest pictures</h1>
-    <div class="row">
-        <ul class="polaroids a">
-            <li th:each="image : ${images}">
-                <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="width: 200px; height: 200px;"/> </a> 
-            </li>
-        </ul>
-           
+        </fieldset>
+
+
+        <h1>Newest pictures</h1>
+        <div class="row">
+            <ul class="polaroids a">
+                <li th:each="image : ${images}">
+                    <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="width: 200px; height: 200px;"/> </a> 
+                </li>
+            </ul>
+
         </div>
         <form id="logoutform" method="post" th:action="@{/logout}"/>
         <script src="/js/logout.js"/>
+        <script>
+                    function submitCheck() {
+                        if (document.getElementById("description").value.length !== 0) {
+                            document.getElementById("imageform").submit();
+                        } else {
+                            alert("Description can't be empty.");
+                        }
+                    }
+        </script>
+        <script th:if="${param.error}">
+            alert("Invalid file type.");
+        </script>
     </body>
 </html>

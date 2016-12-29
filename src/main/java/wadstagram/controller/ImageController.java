@@ -53,6 +53,9 @@ public class ImageController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String getImage(@PathVariable Long id, Model model) {
+        if(imageService.getImage(id) == null) {
+            return "redirect:/";
+        }
         model.addAttribute("image", imageService.getImage(id));
         model.addAttribute("hearts", imageService.getHeartAmount(id));
         model.addAttribute("comments", imageService.getComments(id));
@@ -75,6 +78,9 @@ public class ImageController {
     @RequestMapping(value = "{id}/like", method = RequestMethod.POST)
     public String likeImage(@PathVariable Long id) {
         Image image = imageService.getImage(id);
+        if(image == null) {
+            return "redirect:/image/" + id;
+        }
         Account liker = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
         if (!image.getLikers().contains(liker)) {
             image.getLikers().add(liker);
@@ -88,7 +94,7 @@ public class ImageController {
     @RequestMapping(method = RequestMethod.POST)
     public String addImage(@RequestParam("image") MultipartFile received, @RequestParam String description) throws IOException {
         if (!received.getContentType().contains("image")) {
-            return "redirect:/";
+            return "redirect:/?error";
         }
         Image image = imageService.createImage(received, new Image(), new ImageBytes(), description);
         return "redirect:/image/" + image.getId();

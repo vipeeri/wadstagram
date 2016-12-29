@@ -19,5 +19,8 @@
                 </form>
             </div>
         </div>
+        <script th:if="${param.error}">
+            alert("Error while trying to create a new account. Please try again.");
+        </script>
     </body>
 </html>
