@@ -37,6 +37,15 @@ public class ImageService {
         return imageRepository.findByOwner(owner);
     }
     
+    public void deleteImage(Long id) {
+        Image deleted = this.imageRepository.findOne(id);
+        List<Comment> comments = commentRepository.findByImage(deleted);
+        for(Comment comment : comments) {
+            this.commentRepository.delete(comment);
+        }
+        this.imageRepository.delete(deleted);
+    }
+    
     public void saveImage(Image image) {
         imageRepository.save(image);
     }

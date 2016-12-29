@@ -18,25 +18,9 @@
                 <li><a onclick="logout()">Logout</a></li> 
             </ul>
             </nav>
-        <fieldset>
-            <legend>Submit a new picture</legend>
-            <form method="POST" th:action="@{/image}" enctype="multipart/form-data">
-                <label for="description">Description   </label> <input type="text" name="description" id="description"/><br/>
-                <label for="image">Image   </label><input type="file" name="image" id="image"/><br/>
-                <input type="submit" value="Add!"/>
-            </form>
-            </fieldset>
+        <h1>Unspecified error occurred! Sorry about that! </h1>
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
         
-        
-    <h1>Newest pictures</h1>
-    <div class="row">
-        <ul class="polaroids a">
-            <li th:each="image : ${images}">
-                <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="width: 200px; height: 200px;"/> </a> 
-            </li>
-        </ul>
-           
-        </div>
         <form id="logoutform" method="post" action="/logout"/>
         <script src="/js/logout.js"/>
     </body>

@@ -33,10 +33,10 @@ public class ImageController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping(value = "/{id}/comment", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     public String deleteImage(@PathVariable Long id) {
-        
-        return "redirect:/image/" + id;
+        this.imageService.deleteImage(id);
+        return "redirect:/" + id;
     }
 
     @RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
@@ -69,7 +69,7 @@ public class ImageController {
         return new ResponseEntity<byte[]>(image.getBytes().get(), headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id}/like", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}/like", method = RequestMethod.POST)
     public String likeImage(@PathVariable Long id) {
         Image image = imageService.getImage(id);
         Account liker = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());

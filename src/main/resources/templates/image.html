@@ -10,38 +10,53 @@
     <body>
         <form id="logoutform" method="post" action="/logout"/>
 
-                <nav class="navbar-header">
-                    <span class="navbar-brand">Wadstagram</span>
-                </nav>
-                <nav class="navbar-nav">
-                <ul class="navigation">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">Profile</a></li>
-                    <li> <a onclick="logout()">Logout</a></li> 
-                </ul>
-            </nav>
-        
-            <div class="row content">
-            
+        <nav class="navbar-header">
+            <span class="navbar-brand">Wadstagram</span>
+        </nav>
+        <nav class="navbar-nav">
+            <ul class="navigation">
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Profile</a></li>
+                <li> <a onclick="logout()">Logout</a></li> 
+            </ul>
+        </nav>
+
+        <div class="row content">
+
             <h2 th:text="${image.description}"/>
             <hr/>
             <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder"/>
             <p> Owner: <a th:href="@{/account/{id}(id=${image.owner.id})}"> <span th:text="${image.owner.username}"/> </a> </p>
             <p> Amount of hearts: <span th:text="${hearts}"/> </p>
-            <p> <a th:href="@{/image/{id}/like(id=${image.id})}"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
+            <p> <a onclick="like()"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
+            <p sec:authorize="hasAuthority('ADMIN')"> <a onclick="deleteComment()">Delete picture</a> </p>
             <br/>
             <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}">
                 Comment <input type="text" name="comment"/>
                 <input type="submit" value="Submit comment"/>
             </form>
             <ul style="list-style-type:none">
-            <li th:each="comment : ${comments}"> <br/>
-            <p> <span th:text="${comment.sender.username}"/>
-               <!-- Date: <span th:text="${{comment.postedOn}}"/> -->
-               : <span th:text="${comment.content}"/>
-            </p>
-            </li>
+                <li th:each="comment : ${comments}"> <br/>
+                    <div style="border: 1px solid black;">
+                        <p> Sender: <span th:text="${comment.sender.username}"/>
+                            <!-- Date: <span th:text="${{comment.postedOn}}"/> -->
+                            Comment: <span th:text="${comment.content}"/>
+                        </p>
+                    </div>
+                </li>
             </ul>
-            </div>
+        </div>
+        <form id="likeform" th:action="@{/image/{id}/like(id=${image.id})}" method="POST"/>
+        <form id="deleteform" sec:authorize="hasAuthority('ADMIN')" th:action="@{/image/{id}/delete(id=${image.id})}" method="POST"/>
+        <script>
+            function like() {
+                document.getElementById("likeform").submit();
+            }
+        </script>
+        <script sec:authorize="hasAuthority('ADMIN')">
+            function deleteComment() {
+                document.getElementById("deleteform").submit();
+            }
+        </script>
     </body>
 </html>

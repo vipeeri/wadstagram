@@ -21,6 +21,12 @@ public class DefaultController {
     public String defaultResponse() {
         return "redirect:/";
     }
+    
+    @RequestMapping("/oops")
+    public String handleError(Model model) {
+        model.addAttribute("account", accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName()));
+        return "oops";
+    }
 
     @RequestMapping("/")
     public String root(Model model) {
