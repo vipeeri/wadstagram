@@ -9,10 +9,10 @@
         <div class="header">Wadstagram</div>
         <div class="login-page">
             <div class="form">
-                <form method="POST" th:action="@{/login}" class="login-form">
-                    <input name="username" type="text" placeholder="username"/>
-                    <input name="password" type="password" placeholder="password"/>
-                    <button type="submit">login</button>
+                <form method="POST" th:action="@{/login}" class="login-form" id="loginform">
+                    <input name="username" type="text" placeholder="username" id="username"/>
+                    <input name="password" type="password" placeholder="password" id="password"/>
+                    <button type="submit" id="loginbutton">login</button>
                     <p class="message">Not registered? <a href="/register">Create an account</a></p>
                 </form>
             </div>

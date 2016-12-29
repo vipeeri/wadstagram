@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
                     .antMatchers("/css/**").permitAll()
                     .antMatchers("/img/**").permitAll()
                     .antMatchers("/register").permitAll()
+                    .antMatchers("/oops").permitAll()
                     .antMatchers(HttpMethod.POST, "/image/*/delete").hasAnyAuthority("ADMIN")
                     .anyRequest().authenticated()
                         .and()
