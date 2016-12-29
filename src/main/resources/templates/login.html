@@ -12,7 +12,6 @@
                 <form method="POST" th:action="@{/login}" class="login-form">
                     <input name="username" type="text" placeholder="username"/>
                     <input name="password" type="password" placeholder="password"/>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit">login</button>
                     <p class="message">Not registered? <a href="/register">Create an account</a></p>
                 </form>

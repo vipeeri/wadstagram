@@ -13,9 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@Profile("development")
 @EnableWebSecurity
-public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapter  {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -34,8 +33,6 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
                         .loginPage("/login").permitAll()
                         .and()
                     .logout().permitAll().logoutSuccessUrl("/login");
-        
-        http.csrf().ignoringAntMatchers("/logout", "/login");
     }
 
     @Autowired
