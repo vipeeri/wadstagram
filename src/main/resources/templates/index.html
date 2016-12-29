@@ -29,8 +29,9 @@
 
 
         <h1>Newest pictures</h1>
+        <h5> Page: <span th:each="page : ${pages}"><a th:href="@{/?page={index}(index=${page})}"><span th:text="${page}"/> </a></span></h5>
         <div class="row">
-            <ul class="polaroids a">
+            <ul>
                 <li th:each="image : ${images}">
                     <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="width: 200px; height: 200px;"/> </a> 
                 </li>

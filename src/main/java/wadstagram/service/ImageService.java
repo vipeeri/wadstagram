@@ -3,6 +3,7 @@ package wadstagram.service;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,6 +53,14 @@ public class ImageService {
 
     public List<Image> getAllImages() {
         return imageRepository.findAll();
+    }
+    
+    public int getImageAmount() {
+        return this.getAllImages().size();
+    }
+    
+    public List<Image> getImagePage(Pageable pageable) {
+        return this.imageRepository.findAll(pageable).getContent();
     }
 
     public Image createImage(MultipartFile received, Image image, ImageBytes content, String description) throws IOException {
