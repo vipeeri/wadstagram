@@ -16,7 +16,12 @@ public class AccountService {
     AccountRepository accountRepository;
 
     public Account createAccount(String username, String password, String auth) {
+        Account account = this.getUserByName(username);
+        if(account == null) {
         return accountRepository.save(new Account(username, passwordEncoder.encode(password), auth));
+        } else {
+            return account;
+        }
     }
 
     public Account getUserByName(String username) {

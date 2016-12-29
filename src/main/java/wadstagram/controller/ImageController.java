@@ -33,6 +33,12 @@ public class ImageController {
     @Autowired
     private AccountService accountService;
 
+    @RequestMapping(value = "/{id}/comment", method = RequestMethod.DELETE)
+    public String deleteImage(@PathVariable Long id) {
+        
+        return "redirect:/image/" + id;
+    }
+
     @RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
     public String postComment(@PathVariable Long id, @RequestParam String comment) {
         Account sender = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());

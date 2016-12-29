@@ -28,6 +28,11 @@ public class Account extends AbstractPersistable<Long> {
         return images;
     }
 
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
+
     public Account(String username, String password, String status) {
         this.username = username;
         this.password = password;

@@ -41,7 +41,6 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-        auth.inMemoryAuthentication().withUser("tester").password("tester").authorities("ADMIN");
     }
 
     @Bean

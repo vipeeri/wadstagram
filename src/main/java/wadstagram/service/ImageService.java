@@ -33,6 +33,10 @@ public class ImageService {
         return imageRepository.findOne(id);
     }
     
+    public List<Image> findImagesByUser(Account owner) {
+        return imageRepository.findByOwner(owner);
+    }
+    
     public void saveImage(Image image) {
         imageRepository.save(image);
     }

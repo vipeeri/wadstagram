@@ -4,37 +4,31 @@
         <title>wadstagram</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-        <script src="/js/logout.js"/>
         <link rel="stylesheet" href="/css/index.css"/>
     </head>
+
     <body>
+        <nav class="navbar-header">
+            <span class="navbar-brand">Wadstagram</span>
+        </nav>
+        <nav class="navbar-nav">
+            <ul class="navigation">
+                <li><a href="/">Home</a></li>
+                <li><a th:href="@{/account/{id}(id=${account.id})}">Profile</a></li>
+                <li><a onclick="logout()">Logout</a></li> 
+            </ul>
+        </nav>
+
+        <h1><span th:text="${account.username}"/>'s pictures</h1>
+        <div class="row">
+            <ul class="polaroids a">
+                <li th:each="image : ${images}">
+                    <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="width: 200px; height: 200px;"/> </a> 
+                </li>
+            </ul>
+
+        </div>
         <form id="logoutform" method="post" action="/logout"/>
-        <div class="container-fluid">
-            <nav class="navbar navbar-default">
-                <nav class="navbar-header">
-                    <span class="navbar-brand">Wadstagram</span>
-                </nav>
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li> <a onclick="logout()">Logout</a></li> 
-                </ul>
-            </nav>
-        </div>
-
-        <div class="container-fluid text-center">    
-            <div class="row content">
-                <div class="col-sm-2 sidenav"/>
-                <div class="col-sm-8 text-left"> 
-                    <h1>My Profile</h1>
-                    <p>Hello!</p>
-                    <hr/>
-                    <h3>Test</h3>
-                    <p>Lorem ipsum...</p>
-                </div>
-                <div class="col-sm-2 sidenav"/>
-            </div>
-        </div>
-
+        <script src="/js/logout.js"/>
     </body>
 </html>
