@@ -100,12 +100,75 @@ label {
 }
 
 .row {
-    margin-left: 90px; margin-right: 90px;
-}
-.row {
     alignment-adjust: central;
+    width: 100%;
+    margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0;
+    max-width: 62.5em;
 }
 
 @media screen and (max-width: 767px) {
     .row.content {height:auto;} 
+}
+
+/*Polaroid style*/
+ul.polaroids a{
+    background:#fff;
+    display:inline;
+    float:left;
+    margin:0 0 27px 30px;
+    width:auto;
+    padding:10px 10px 15px;
+    text-align:center;
+    font-family:"Marker Felt",sans-serif;
+    text-decoration:none;
+    color:#333;
+    font-size:18px;
+    -webkit-box-shadow:0 3px 6px rgba(0,0,0,.25);
+    -moz-box-shadow:0 3px 6px rgba(0,0,0,.25);
+    -webkit-transform:rotate(-2deg);
+    -webkit-transition:-webkit-transform .15s linear;
+    -moz-transform:rotate(-2deg);
+}
+
+ul.polaroids li {
+    display: inline;
+    padding-left: 0;
+}
+
+ul.polaroids li:nth-child(even) a {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(2deg);
+}
+
+ul.polaroids li:nth-child(3n) a {
+  -webkit-transform: none;
+  -moz-transform: rotate(5deg);
+  position: relative;
+  top: -5px;
+}
+
+ul.polaroids li:nth-child(5n) a {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(4deg);
+  position: relative;
+  right: 5px;
+}
+
+.form input {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #00FFFF;
+    /*width: 100%;*/
+    border: 0;
+    padding: 15px;
+    color: #333;
+    font-size: 16px;
+    -webkit-transition: all 0.3 ease;
+    transition: all ease;
+    cursor: pointer;
+}
+
+.form input:hover,.form input:active,.form input:focus {
+    background: #00E6E6;
 }
