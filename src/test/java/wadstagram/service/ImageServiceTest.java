@@ -229,8 +229,8 @@ public class ImageServiceTest {
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
         this.imageRepository.save(image);
-        assertNotNull(this.imageService.getImagePage(new PageRequest(0, 10, Sort.Direction.DESC, "createdOn")).size());
-        assertEquals(2, this.imageService.getImagePage(new PageRequest(0, 10, Sort.Direction.DESC, "createdOn")).size());
+        assertNotNull(this.imageService.getImagePage(new PageRequest(0, 10, Sort.Direction.DESC, "createdOn")).getContent());
+        assertEquals(2, this.imageService.getImagePage(new PageRequest(0, 10, Sort.Direction.DESC, "createdOn")).getContent().size());
     }
 
     @Test

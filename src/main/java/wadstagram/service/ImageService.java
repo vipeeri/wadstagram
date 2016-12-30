@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -60,8 +61,8 @@ public final class ImageService {
         return this.getAllImages().size();
     }
     
-    public List<Image> getImagePage(Pageable pageable) {
-        return this.imageRepository.findAll(pageable).getContent();
+    public Page<Image> getImagePage(Pageable pageable) {
+        return this.imageRepository.findAll(pageable);
     }
 
     public Image createImage(MultipartFile received, Image image, ImageBytes content, String description) throws IOException {

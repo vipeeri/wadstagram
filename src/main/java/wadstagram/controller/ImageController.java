@@ -56,6 +56,16 @@ public final class ImageController {
         if (imageService.getImage(id) == null) {
             return "redirect:/";
         }
+        Image image = imageService.getImage(id);
+        if (image == null) {
+            return "redirect:/image/" + id;
+        }
+        Account liker = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (!image.getLikers().contains(liker)) {
+            model.addAttribute("liked", false);
+        } else {
+            model.addAttribute("liked", true);
+        }
         model.addAttribute("image", imageService.getImage(id));
         model.addAttribute("hearts", imageService.getHeartAmount(id));
         model.addAttribute("comments", imageService.getComments(id));
@@ -96,7 +106,7 @@ public final class ImageController {
         if (!received.getContentType().contains("image")) {
             return "redirect:/?error";
         }
-        if(description.isEmpty()) {
+        if (description.isEmpty()) {
             return "redirect:/";
         }
         Image image = imageService.createImage(received, new Image(), new ImageBytes(), description);

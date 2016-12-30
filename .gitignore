@@ -1,3 +1,4 @@
 target/
 /nbproject/
 nbactions.xml
+/src/test/java/wadstagram/controller/ClickTest.java

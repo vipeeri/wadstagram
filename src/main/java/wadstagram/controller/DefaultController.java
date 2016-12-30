@@ -3,7 +3,6 @@ package wadstagram.controller;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -50,7 +49,7 @@ public final class DefaultController {
                 pages.add(i);
             }
         }
-        model.addAttribute("images", imageService.getImagePage(new PageRequest((amount - 1) * 10, amount * 10, Sort.Direction.DESC, "createdOn")));
+        model.addAttribute("images", imageService.getImagePage(new PageRequest(amount - 1, 10, Sort.Direction.DESC, "createdOn")).getContent());
         model.addAttribute("pages", pages);
         return "index";
     }
