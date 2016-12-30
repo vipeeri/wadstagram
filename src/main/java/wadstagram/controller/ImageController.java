@@ -96,6 +96,9 @@ public class ImageController {
         if (!received.getContentType().contains("image")) {
             return "redirect:/?error";
         }
+        if(description.isEmpty()) {
+            return "redirect:/";
+        }
         Image image = imageService.createImage(received, new Image(), new ImageBytes(), description);
         return "redirect:/";
     }

@@ -14,10 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Profile("testing")
 @Configuration
-@Profile({"development", "production"})
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
+public class TestingSecurityConfiguration extends WebSecurityConfigurerAdapter  {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -38,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
                         .loginPage("/login").permitAll()
                         .and()
                     .logout().permitAll().logoutSuccessUrl("/login");
+        
+        http.csrf().disable();
     }
 
     @Autowired
