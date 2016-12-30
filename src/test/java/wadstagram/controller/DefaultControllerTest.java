@@ -61,6 +61,12 @@ public class DefaultControllerTest extends FluentTest {
     }
 
     @Test
+    public void testErrorPage() {
+        goTo("http://localhost:" + port + "/oops");
+        assertEquals("wadstagram - oops", title());
+    }
+
+    @Test
     public void testRegisterPage() {
         goTo("http://localhost:" + port + "/register");
         assertEquals("wadstagram - register", title());
