@@ -97,6 +97,6 @@ public class ImageController {
             return "redirect:/?error";
         }
         Image image = imageService.createImage(received, new Image(), new ImageBytes(), description);
-        return "redirect:/image/" + image.getId();
+        return "redirect:/";
     }
 }
