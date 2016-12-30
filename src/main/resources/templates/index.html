@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>wadstagram - index</title>
+        <title>wadstagram</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="/css/index.css"/>
@@ -20,16 +20,20 @@
         </nav>
         <fieldset>
             <legend>Submit a new picture</legend>
-            <form method="POST" th:action="@{/image}" enctype="multipart/form-data" id="imageform">
-                <label for="description">Description   </label> <input type="text" name="description" id="description"/><br/>
-                <label for="image">Image   </label><input type="file" name="image" id="image"/><br/>
-                <input onclick="submitCheck()" value="Add!"/>
+            <div class="form">
+            <form method="POST" th:action="@{/image}" enctype="multipart/form-data" id="imageform">             
+              <!--  <label for="image">Image </label>-->
+                <input type="file" name="image" id="image"/><br/>
+                <br/>
+                <input name="description" type="text" id="description" placeholder="Description"/> <br/>
+            <!--<label for="description">Description </label> <input type="text" name="description" id="description"/><br/> -->      
+                <br/>  
+                <input class="button" onclick="submitCheck()" value="Add!"/>
             </form>
+               </div> 
         </fieldset>
-
-
-        <h1>Newest pictures</h1>
-        <h5> Page: <span th:each="page : ${pages}"><a th:href="@{/?page={index}(index=${page})}"><span th:text="${page}"/> </a></span></h5>
+        <h2> Newest pictures </h2>
+        <h4> Page: <span th:each="page : ${pages}"><a th:href="@{/?page={index}(index=${page})}"><span th:text="${page}"/> </a></span></h4>
         <div class="row">
             <ul class="polaroids a">
                 <li th:each="image : ${images}">
@@ -41,13 +45,13 @@
         <form id="logoutform" method="post" th:action="@{/logout}"/>
         <script src="/js/logout.js"/>
         <script>
-                    function submitCheck() {
-                        if (document.getElementById("description").value.length !== 0) {
-                            document.getElementById("imageform").submit();
-                        } else {
-                            alert("Description can't be empty.");
-                        }
-                    }
+            function submitCheck() {
+                if (document.getElementById("description").value.length !== 0) {
+                    document.getElementById("imageform").submit();
+                } else {
+                    alert("Description can't be empty.");
+                }
+            }
         </script>
         <script th:if="${param.error}">
             alert("Invalid file type.");

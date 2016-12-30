@@ -83,8 +83,8 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 fieldset {
-    margin-top: 25px; margin-left: 150px; margin-right: 170px;
-    padding-top: 22px; padding-bottom: 22px;
+    margin-top: 15px; margin-left: 170px; margin-right: 170px;
+    padding-top: 12px; padding-bottom: 12px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     border-color: #80FFFF;
 }
@@ -134,41 +134,97 @@ ul.polaroids li {
     display: inline;
     padding-left: 0;
 }
-
+/*joka toinen*/
 ul.polaroids li:nth-child(even) a {
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(2deg);
 }
-
+/*joka kolmas*/
 ul.polaroids li:nth-child(3n) a {
   -webkit-transform: none;
   -moz-transform: rotate(5deg);
   position: relative;
   top: -5px;
 }
-
+/*joka viides*/
 ul.polaroids li:nth-child(5n) a {
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(4deg);
   position: relative;
   right: 5px;
 }
-
-.form input {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #00FFFF;
-    /*width: 100%;*/
-    border: 0;
-    padding: 15px;
-    color: #333;
-    font-size: 16px;
-    -webkit-transition: all 0.3 ease;
-    transition: all ease;
-    cursor: pointer;
+/*joka 11s*/
+ul.polaroids li:nth-child(11n) a {
+  position: relative;
+  top: 3px;
+  left: -5px;
+}
+/*joka 8s*/
+ul.polaroids li:nth-child(8n) a {
+   -moz-transform: rotate(4deg);
+  position: relative;
+  top: 8px;
+  right: 5px;
 }
 
-.form input:hover,.form input:active,.form input:focus {
+.form {
+    position: relative;
+    z-index: 1;
+    background: #808080;
+    max-width: 320px;
+    margin: 0 auto 0px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.button {
+    background-color: #d5d5d5;
+    transition: all ease;
+    cursor: pointer;
+    color: #333;
+    text-align:center;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3px;
+    text-transform: uppercase;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.form input {
+    color: #333;
+    outline: 0;
+    text-align: center;
+    background: #d5d5d5;
+    width: 90%;
+    border: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.button:hover, .button:active, .button:focus {
     background: #00E6E6;
+}
+.active {
+    background-color: #00E6E6;
+}
+h2 {
+    text-align: center;
+    margin-top: 15px; margin-bottom: 0;
+    font-size: 25px !important;
+    font-weight: normal !important;
+}
+
+h4 {
+    margin-top: 15px; margin-bottom: 0;
+    font-weight: normal;
+}
+
+.formkaks { 
+    position: relative;
+    display: inline;
+    max-width: 400px;
+    margin: 0 auto 0px;
+    text-align: center;
 }

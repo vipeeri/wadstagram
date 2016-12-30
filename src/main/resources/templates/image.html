@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>wadstagram - image</title>
+        <title>wadstagram</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="/js/logout.js"/>
@@ -25,19 +25,21 @@
 
             <h2 th:text="${image.description}"/>
             <hr/>
-            <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder"/>
+            <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="max-width: 600px; max-height: 600px;"/>
             <p> Owner: <a th:href="@{/account/{id}(id=${image.owner.id})}"> <span th:text="${image.owner.username}"/> </a> </p>
             <p> Amount of hearts: <span th:text="${hearts}"/> </p>
             <p> <a onclick="like()"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Heart this picture! </p>
             <p sec:authorize="hasAuthority('ADMIN')"> <a onclick="deleteComment()">Delete picture</a> </p>
             <br/>
+            <div class="formkaks">
             <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}" id="commentform">
                 Comment: <input type="text" name="comment" id="comment"/>
-                <input onclick="makeComment()" value="Submit comment"/>
+                <input class="button" onclick="makeComment()" value="Submit comment"/>
             </form>
+            </div>
             <ul style="list-style-type:none">
                 <li th:each="comment : ${comments}"> <br/>
-                    <div style="border: 1px solid black;">
+                   <!-- <div style="border: 0.5px solid grey;">-->
                         <p> Sender: <span th:text="${comment.sender.username}"/>
                             <!-- Date: <span th:text="${{comment.postedOn}}"/> -->
                             Comment: <span th:text="${comment.content}"/>
