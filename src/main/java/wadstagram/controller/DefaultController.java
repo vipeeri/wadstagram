@@ -14,7 +14,7 @@ import wadstagram.service.AccountService;
 import wadstagram.service.ImageService;
 
 @Controller
-public class DefaultController {
+public final class DefaultController {
 
     @Autowired
     private AccountService accountService;

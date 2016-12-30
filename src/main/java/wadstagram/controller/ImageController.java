@@ -25,7 +25,7 @@ import wadstagram.service.ImageService;
 
 @Controller
 @RequestMapping("/image")
-public class ImageController {
+public final class ImageController {
 
     @Autowired
     private ImageService imageService;

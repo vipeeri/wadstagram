@@ -7,7 +7,7 @@ import wadstagram.domain.Account;
 import wadstagram.repository.AccountRepository;
 
 @Service
-public class AccountService {
+public final class AccountService {
 
     @Autowired
     PasswordEncoder passwordEncoder;

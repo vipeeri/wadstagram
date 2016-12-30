@@ -13,5 +13,6 @@ public interface ImageRepository extends JpaRepository<Image, Long> {
     
     public List<Image> findByOwner(Account owner);
     
+    @Override
     public Page<Image> findAll(Pageable pageable);
 }

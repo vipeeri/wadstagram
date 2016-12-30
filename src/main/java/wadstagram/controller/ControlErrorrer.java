@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Profile("production")
 @RestController
-public class ControlErrorrer implements ErrorController {
+public final class ControlErrorrer implements ErrorController {
 
     @RequestMapping(value = "/error")
     public String error(HttpServletResponse response) throws IOException {

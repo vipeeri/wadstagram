@@ -17,7 +17,7 @@ import wadstagram.repository.ImageBytesRepository;
 import wadstagram.repository.ImageRepository;
 
 @Service
-public class ImageService {
+public final class ImageService {
 
     @Autowired
     ImageRepository imageRepository;

@@ -21,6 +21,7 @@ public class Account extends AbstractPersistable<Long> {
 
     @OneToMany(mappedBy = "owner")
     private Set<Image> images;
+    
     @OneToMany(mappedBy = "sender")
     private List<Comment> comments;
 
