@@ -3,6 +3,7 @@ package wadstagram.domain;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -24,6 +25,9 @@ public class Account extends AbstractPersistable<Long> {
     
     @OneToMany(mappedBy = "sender")
     private List<Comment> comments;
+    
+    @ManyToMany(mappedBy = "likers")
+    private List<Image> likes;
 
     public Set<Image> getImages() {
         return images;
