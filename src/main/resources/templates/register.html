@@ -9,7 +9,7 @@
         <div class="header">Wadstagram</div>
         <div class="login-page">
             <div class="form">
-                <form method="POST" th:action="@{/register}" th:object="${account}">                
+                <form method="POST" th:action="@{/register}" th:object="${account}" id="registerform">                
                     <input th:field="*{username}" type="text" placeholder="username"/>
                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"/>
                     <input th:field="*{password}" type="password" placeholder="password"/>

@@ -7,6 +7,7 @@ import org.fluentlenium.adapter.FluentTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class DefaultControllerTest extends FluentTest {
 
     @Test
     public void testLoginPage() {
-        goTo("http://localhost:" + port +  "/login");
+        goTo("http://localhost:" + port + "/login");
         assertEquals("wadstagram - login", title());
     }
 
@@ -67,6 +68,19 @@ public class DefaultControllerTest extends FluentTest {
 
     @Test
     public void testLoggingIn() {
-        //TODO
+        goTo("http://localhost:" + port);
+        fill(find("#username")).with("user");
+        fill(find("#password")).with("user");
+        submit(find("#loginform"));
+        assertEquals("wadstagram - index", title());
+    }
+
+    @Test
+    public void testRegistering() {
+        goTo("http://localhost:" + port + "/register");
+        fill(find("#username")).with("tester");
+        fill(find("#password")).with("tester");
+        submit(find("#registerform"));
+        assertEquals("wadstagram - login", title());
     }
 }
