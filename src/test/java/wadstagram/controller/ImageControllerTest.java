@@ -52,7 +52,7 @@ public class ImageControllerTest {
         String imageName = UUID.randomUUID().toString().substring(0, 6);
         String content = UUID.randomUUID().toString().substring(0, 6);
         MockMultipartFile multipartFile = new MockMultipartFile("image", imageName, "image/png", content.getBytes());
-        mockMvc.perform(fileUpload("/image").file(multipartFile).param("description", description)).andReturn().getResponse().getErrorMessage();
+        mockMvc.perform(fileUpload("/image").file(multipartFile).param("description", description));
         assertEquals(1, imageRepository.findAll().size());
     }
 

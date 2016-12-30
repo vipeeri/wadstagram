@@ -33,6 +33,7 @@ public class Image extends AbstractPersistable<Long> {
     @NotEmpty
     private String name;
     
+    @NotEmpty
     private String description;
     
     @Temporal(TemporalType.DATE)

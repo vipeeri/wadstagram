@@ -48,8 +48,8 @@ public final class ImageService {
         this.imageRepository.delete(deleted);
     }
     
-    public void saveImage(Image image) {
-        imageRepository.save(image);
+    public Image saveImage(Image image) {
+        return imageRepository.save(image);
     }
 
     public List<Image> getAllImages() {

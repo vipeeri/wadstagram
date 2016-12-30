@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class ImageBytes extends AbstractPersistable<Long> {
 
-    @Lob
+    @Lob()
     private byte[] content;
 
     public byte[] get() {
