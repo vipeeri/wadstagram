@@ -34,33 +34,5 @@ public class ImageTest {
 
     }
 
-    @Test
-    public void testSetBytes() {
 
-    }
-
-    @Test
-    public void testSetComments() {
-
-    }
-
-    @Test
-    public void testSetHearts() {
-
-    }
-
-    @Test
-    public void testSetLength() {
-
-    }
-
-    @Test
-    public void testSetName() {
-
-    }
-
-    @Test
-    public void testSetType() {
-
-    }
 }

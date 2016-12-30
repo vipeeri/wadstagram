@@ -4,11 +4,10 @@ Wadstagram, photo-sharing service that enables its users to upload pictures & co
 
 **Implemented use cases**
 
-- Creating an account and logging in
+- Creating an account
+- Logging in/out
 - Uploading an image
 - Adding a comment on an image
-- Liking an image
-
-**Soon-to-be implemented**
-
+-'Heart' an image
 - User profiles
+
