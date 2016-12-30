@@ -38,7 +38,7 @@ public class TestingSecurityConfiguration extends WebSecurityConfigurerAdapter  
                         .loginPage("/login").permitAll()
                         .and()
                     .logout().permitAll().logoutSuccessUrl("/login");
-        
+        //Disabled to make testing easier
         http.csrf().disable();
     }
 

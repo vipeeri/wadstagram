@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile("production")
 @RestController
 public final class ControlErrorrer implements ErrorController {
-
+    //Catches any unhandled errors
     @RequestMapping(value = "/error")
     public String error(HttpServletResponse response) throws IOException {
         response.sendRedirect("/oops");

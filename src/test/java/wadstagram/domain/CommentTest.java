@@ -15,7 +15,6 @@ public class CommentTest {
 
     @Before
     public void setUp() {
-
         comment = new Comment(new Image(), new Account("test", "test"), new Date(), "test");
     }
 
