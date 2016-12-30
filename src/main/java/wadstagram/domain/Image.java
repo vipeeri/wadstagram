@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -27,7 +28,7 @@ public class Image extends AbstractPersistable<Long> {
         return owner;
     }
     
-    @OneToMany
+    @ManyToMany
     private List<Account> likers;
     
     @NotEmpty

@@ -1,41 +1,42 @@
 package wadstagram.controller;
 
-import org.fluentlenium.adapter.FluentTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithUserDetails;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import wadstagram.repository.ImageRepository;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("development")
-public class AccountControllerTest extends FluentTest {
+@ActiveProfiles("testing")
+@WithUserDetails("admin")
+public class AccountControllerTest {
 
-    public WebDriver webDriver = new HtmlUnitDriver();
+    @Autowired
+    private WebApplicationContext webAppContext;
 
-    @Override
-    public WebDriver getDefaultDriver() {
-        return webDriver;
-    }
+    @Autowired
+    private ImageRepository imageRepository;
 
-    @LocalServerPort
-    private Integer port;
+    private MockMvc mockMvc;
 
     @Before
-    public void logIn() {
-        goTo("http://localhost:" + port);
-        fill(find("#username")).with("user");
-        fill(find("#password")).with("user");
-        submit(find("#loginform"));
+    public void setUp() {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).apply(springSecurity()).build();
     }
 
     @Test
-    public void testAccountInfo() {
-
+    public void testAccountInfo() throws Exception {
+        mockMvc.perform(get("/account/1")).andExpect(status().isOk());
     }
 }
