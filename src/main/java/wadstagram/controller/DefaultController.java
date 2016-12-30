@@ -49,7 +49,7 @@ public final class DefaultController {
                 pages.add(i);
             }
         }
-        model.addAttribute("images", imageService.getImagePage(new PageRequest(amount - 1, 10, Sort.Direction.DESC, "createdOn")).getContent());
+        model.addAttribute("images", imageService.getImagePage(new PageRequest(amount - 1, 12, Sort.Direction.DESC, "createdOn")).getContent());
         model.addAttribute("pages", pages);
         return "index";
     }
