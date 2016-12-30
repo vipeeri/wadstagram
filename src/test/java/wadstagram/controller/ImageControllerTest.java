@@ -21,6 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import wadstagram.domain.Image;
+import wadstagram.repository.CommentRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -34,15 +35,19 @@ public class ImageControllerTest {
     @Autowired
     private ImageRepository imageRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+    
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).apply(springSecurity()).build();
     }
-    
+
     @After
     public void cleanUp() {
+        this.commentRepository.deleteAll();
         this.imageRepository.deleteAll();
     }
 
@@ -91,5 +96,29 @@ public class ImageControllerTest {
         MockMultipartFile multipartFile = new MockMultipartFile("image", imageName, "image/png", content.getBytes());
         mockMvc.perform(fileUpload("/image").file(multipartFile).param("description", "")).andReturn();
         assertEquals(0, imageRepository.findAll().size());
+    }
+
+    @Test
+    public void makeCommentTest() throws Exception {
+        String description = UUID.randomUUID().toString().substring(0, 6);
+        String imageName = UUID.randomUUID().toString().substring(0, 6);
+        String content = UUID.randomUUID().toString().substring(0, 6);
+        MockMultipartFile multipartFile = new MockMultipartFile("image", imageName, "image/png", content.getBytes());
+        mockMvc.perform(fileUpload("/image").file(multipartFile).param("description", description));
+        Image image = this.imageRepository.findAll().get(0);
+        mockMvc.perform(post("/image/" + image.getId() + "/comment").param("comment", "testcomment")).andExpect(status().is3xxRedirection());
+        assertEquals(1, this.imageRepository.findOne(image.getId()).getComments().size());
+    }
+    
+    @Test
+    public void likeImageTest() throws Exception {
+        String description = UUID.randomUUID().toString().substring(0, 6);
+        String imageName = UUID.randomUUID().toString().substring(0, 6);
+        String content = UUID.randomUUID().toString().substring(0, 6);
+        MockMultipartFile multipartFile = new MockMultipartFile("image", imageName, "image/png", content.getBytes());
+        mockMvc.perform(fileUpload("/image").file(multipartFile).param("description", description));
+        Image image = this.imageRepository.findAll().get(0);
+        mockMvc.perform(post("/image/" + image.getId() + "/like")).andExpect(status().is3xxRedirection());
+        assertEquals(1, this.imageRepository.findOne(image.getId()).getLikers().size());
     }
 }

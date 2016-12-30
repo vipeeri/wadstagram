@@ -80,6 +80,10 @@ public class Account extends AbstractPersistable<Long> {
         return this.status;
     }
 
+    public List<Image> getLikes() {
+        return likes;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

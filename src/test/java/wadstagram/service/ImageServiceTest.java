@@ -2,6 +2,7 @@ package wadstagram.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.UUID;
 import org.junit.After;
 import org.junit.Test;
@@ -56,7 +57,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -70,7 +71,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -79,7 +80,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("testDescription");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("testname");
         image.setOwner(this.accountRepository.findOne(2L));
         image.setType("image/png");
@@ -125,7 +126,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -134,7 +135,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("testDescription");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("testname");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -148,7 +149,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -165,11 +166,11 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
-        image = this.imageRepository.save(image);
+        this.imageRepository.save(image);
         assertEquals(1, this.imageService.getImageAmount());
     }
 
@@ -179,7 +180,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -196,7 +197,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -214,7 +215,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -223,7 +224,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("testDescription");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("testname");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");
@@ -238,7 +239,7 @@ public class ImageServiceTest {
         image.setComments(new ArrayList<>());
         image.setCreatedOn(new Date());
         image.setDescription("test");
-        image.setLikers(new ArrayList<>());
+        image.setLikers(new HashSet<>());
         image.setName("test");
         image.setOwner(this.accountRepository.findOne(1L));
         image.setType("image/png");

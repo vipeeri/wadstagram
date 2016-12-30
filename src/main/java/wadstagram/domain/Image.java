@@ -2,7 +2,9 @@ package wadstagram.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -28,8 +30,8 @@ public class Image extends AbstractPersistable<Long> {
         return owner;
     }
     
-    @ManyToMany
-    private List<Account> likers;
+    @ManyToMany(fetch=FetchType.EAGER)
+    private Set<Account> likers;
     
     @NotEmpty
     private String name;
@@ -71,11 +73,11 @@ public class Image extends AbstractPersistable<Long> {
         return length;
     }
 
-    public List<Account> getLikers() {
+    public Set<Account> getLikers() {
         if(this.likers != null) {
             return this.likers;
         } else {
-            return new ArrayList<>();
+            return new HashSet<>();
         }
     }
 
@@ -107,7 +109,7 @@ public class Image extends AbstractPersistable<Long> {
         this.comments = comments;
     }
 
-    public void setLikers(List<Account> likers) {
+    public void setLikers(Set<Account> likers) {
         this.likers = likers;
     }
 
