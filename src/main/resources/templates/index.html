@@ -21,16 +21,14 @@
         <fieldset>
             <legend>Submit a new picture</legend>
             <div class="form">
-            <form method="POST" th:action="@{/image}" enctype="multipart/form-data" id="imageform">             
-              <!--  <label for="image">Image </label>-->
-                <input type="file" name="image" id="image"/><br/>
-                <br/>
-                <input name="description" type="text" id="description" placeholder="Description"/> <br/>
-            <!--<label for="description">Description </label> <input type="text" name="description" id="description"/><br/> -->      
-                <br/>  
-                <input class="button" onclick="submitCheck()" value="Add!"/>
-            </form>
-               </div> 
+                <form method="POST" th:action="@{/image}" enctype="multipart/form-data" id="imageform">             
+                    <input type="file" name="image" id="image"/><br/>
+                    <br/>
+                    <input name="description" type="text" id="description" placeholder="Description"/> <br/>    
+                    <br/>  
+                    <input class="button" onclick="submitCheck()" value="Add!"/>
+                </form>
+            </div> 
         </fieldset>
         <h2> Newest pictures </h2>
         <h4> Page: <span th:each="page : ${pages}"><a th:href="@{/?page={index}(index=${page})}"><span th:text="${page}"/> </a></span></h4>
@@ -44,13 +42,13 @@
         <form id="logoutform" method="post" th:action="@{/logout}"/>
         <script src="/js/logout.js"/>
         <script>
-            function submitCheck() {
-                if (document.getElementById("description").value.length !== 0) {
-                    document.getElementById("imageform").submit();
-                } else {
-                    alert("Description can't be empty.");
-                }
-            }
+                        function submitCheck() {
+                            if (document.getElementById("description").value.length !== 0) {
+                                document.getElementById("imageform").submit();
+                            } else {
+                                alert("Description can't be empty.");
+                            }
+                        }
         </script>
         <script th:if="${param.error}">
             alert("Invalid file type.");

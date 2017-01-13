@@ -7,7 +7,7 @@ import wadstagram.domain.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    
+
     @Cacheable("accounts")
     public Account findByUsername(String username);
 }

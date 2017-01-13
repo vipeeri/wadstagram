@@ -28,27 +28,27 @@ public final class ImageService {
 
     @Autowired
     AccountService accountService;
-    
+
     @Autowired
     CommentRepository commentRepository;
-    
+
     public Image getImage(Long id) {
         return imageRepository.findOne(id);
     }
-    
+
     public List<Image> findImagesByUser(Account owner) {
         return imageRepository.findByOwner(owner);
     }
-    
+
     public void deleteImage(Long id) {
         Image deleted = this.imageRepository.findOne(id);
         List<Comment> comments = commentRepository.findByImage(deleted);
-        for(Comment comment : comments) {
+        for (Comment comment : comments) {
             this.commentRepository.delete(comment);
         }
         this.imageRepository.delete(deleted);
     }
-    
+
     public Image saveImage(Image image) {
         return imageRepository.save(image);
     }
@@ -56,11 +56,11 @@ public final class ImageService {
     public List<Image> getAllImages() {
         return imageRepository.findAll();
     }
-    
+
     public int getImageAmount() {
         return this.getAllImages().size();
     }
-    
+
     public Page<Image> getImagePage(Pageable pageable) {
         return this.imageRepository.findAll(pageable);
     }
@@ -81,15 +81,15 @@ public final class ImageService {
     public byte[] getImageData(Long id) {
         return this.getImage(id).getBytes().get();
     }
-    
+
     public int getHeartAmount(Long id) {
         return this.getImage(id).getLikers().size();
     }
-    
+
     public List<Comment> getComments(Long id) {
         return this.getImage(id).getComments();
     }
-    
+
     public void addCommentToPicture(Image image, Comment comment) {
         comment = commentRepository.save(comment);
         image.getComments().add(comment);

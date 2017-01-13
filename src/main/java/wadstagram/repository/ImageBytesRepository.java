@@ -6,5 +6,5 @@ import wadstagram.domain.ImageBytes;
 
 @Repository
 public interface ImageBytesRepository extends JpaRepository<ImageBytes, Long> {
-    
+
 }

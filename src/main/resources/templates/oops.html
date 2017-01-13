@@ -8,19 +8,18 @@
     </head>
 
     <body>
-            <nav class="navbar-header">
-                <span class="navbar-brand">Wadstagram</span>
-            </nav>
-            <nav class="navbar-nav">
+        <nav class="navbar-header">
+            <span class="navbar-brand">Wadstagram</span>
+        </nav>
+        <nav class="navbar-nav">
             <ul class="navigation">
                 <li><a href="/">Home</a></li>
                 <li><a th:if="${account != null}" th:href="@{/account/{id}(id=${account.id})}">Profile</a></li>
                 <li><a onclick="logout()">Logout</a></li> 
             </ul>
-            </nav>
+        </nav>
         <h1>Unspecified error occurred! Sorry about that! </h1>
         <iframe width="640" height="360" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-        
         <form id="logoutform" method="post" th:action="@{/logout}"/>
         <script src="/js/logout.js"/>
     </body>

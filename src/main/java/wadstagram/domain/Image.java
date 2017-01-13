@@ -29,16 +29,16 @@ public class Image extends AbstractPersistable<Long> {
     public Account getOwner() {
         return owner;
     }
-    
-    @ManyToMany(fetch=FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Account> likers;
-    
+
     @NotEmpty
     private String name;
-    
+
     @NotEmpty
     private String description;
-    
+
     @Temporal(TemporalType.DATE)
     private Date createdOn;
 
@@ -49,20 +49,20 @@ public class Image extends AbstractPersistable<Long> {
     public Date getCreatedOn() {
         return createdOn;
     }
-    
+
     @NotEmpty
     private String type;
-    
+
     private Long length;
-    
-    @OneToOne(fetch=FetchType.LAZY)
+
+    @OneToOne(fetch = FetchType.LAZY)
     private ImageBytes bytes;
-    
-    @OneToMany(mappedBy = "image", fetch=FetchType.EAGER)
+
+    @OneToMany(mappedBy = "image", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
     public List<Comment> getComments() {
-        if(this.comments != null) {
+        if (this.comments != null) {
             return this.comments;
         } else {
             return new ArrayList<>();
@@ -74,7 +74,7 @@ public class Image extends AbstractPersistable<Long> {
     }
 
     public Set<Account> getLikers() {
-        if(this.likers != null) {
+        if (this.likers != null) {
             return this.likers;
         } else {
             return new HashSet<>();
@@ -100,7 +100,7 @@ public class Image extends AbstractPersistable<Long> {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public void setBytes(ImageBytes bytes) {
         this.bytes = bytes;
     }

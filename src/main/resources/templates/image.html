@@ -21,30 +21,30 @@
             </ul>
         </nav>
 
-            <h2 th:text="${image.description}"/>
-            <hr/>
-            <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="max-width: 700px; max-height: 700px;"/>
-            <p> Owner: <a th:href="@{/account/{id}(id=${image.owner.id})}"> <span th:text="${image.owner.username}"/> </a> </p>
-            <p> Amount of hearts: <span th:text="${hearts}"/> </p>
-            <p th:if="${liked} == false"> <a onclick="like()"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Like this picture! </p>
-            <p th:if="${liked} == true"> <a onclick="like()"><img src="/img/disheart.png" width="25" height="25" alt="disheartbutton"/> </a> Dislike this picture! </p>
-            <p sec:authorize="hasAuthority('ADMIN')"> <a onclick="deleteComment()">Delete picture</a> </p>
-            <br/>
-                <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}" id="commentform">
-                    Comment: <input class="commentform" type="text" name="comment" id="comment"/>
-                    <input class="comment" onclick="makeComment()" value="Submit comment"/>
-                </form>
-          
-            <ul style="list-style-type:none">
-                <li th:each="comment : ${comments}"> <br/>
-                    <!-- <div style="border: 0.5px solid grey;">-->
-                    <p> <span th:text="${comment.sender.username}"/>
-                        <!-- Date: <span th:text="${{comment.postedOn}}"/> -->
-                        : <span th:text="${comment.content}"/>
-                    </p>
-                </li>
-            </ul>
-        
+        <h2 th:text="${image.description}"/>
+        <hr/>
+        <img th:src="@{/image/{id}/data(id=${image.id})}" alt="placeholder" style="max-width: 700px; max-height: 700px;"/>
+        <p> Owner: <a th:href="@{/account/{id}(id=${image.owner.id})}"> <span th:text="${image.owner.username}"/> </a> </p>
+        <p> Amount of hearts: <span th:text="${hearts}"/> </p>
+        <p th:if="${liked} == false"> <a onclick="like()"><img src="/img/heart.png" width="25" height="25" alt="heartbutton"/> </a> Like this picture! </p>
+        <p th:if="${liked} == true"> <a onclick="like()"><img src="/img/disheart.png" width="25" height="25" alt="disheartbutton"/> </a> Dislike this picture! </p>
+        <p sec:authorize="hasAuthority('ADMIN')"> <a onclick="deleteComment()">Delete picture</a> </p>
+        <br/>
+        <form method="POST" th:action="@{/image/{id}/comment(id=${image.id})}" id="commentform">
+            Comment: <input class="commentform" type="text" name="comment" id="comment"/>
+            <input class="comment" onclick="makeComment()" value="Submit comment"/>
+        </form>
+
+        <ul style="list-style-type:none">
+            <li th:each="comment : ${comments}"> <br/>
+                <!-- <div style="border: 0.5px solid grey;">-->
+                <p> <span th:text="${comment.sender.username}"/>
+                    <!-- Date: <span th:text="${{comment.postedOn}}"/> -->
+                    : <span th:text="${comment.content}"/>
+                </p>
+            </li>
+        </ul>
+
         <form id="likeform" th:action="@{/image/{id}/like(id=${image.id})}" method="POST"/>
         <form id="deleteform" sec:authorize="hasAuthority('ADMIN')" th:action="@{/image/{id}/delete(id=${image.id})}" method="POST"/>
         <script>

@@ -15,18 +15,18 @@ public class AccountServiceTest {
 
     @Autowired
     private AccountService accountService;
-    
+
     @Test
     public void testFindByUserName() {
         assertNotNull(accountService.getUserByName("admin"));
     }
 
-        @Test
+    @Test
     public void testFindById() {
         assertNotNull(accountService.getUserById(1L));
     }
-    
-        @Test
+
+    @Test
     public void testCreateAccount() {
         accountService.createAccount("test", "test", "USER");
         assertNotNull(accountService.getUserByName("test"));

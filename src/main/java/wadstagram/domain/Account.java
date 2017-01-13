@@ -22,10 +22,10 @@ public class Account extends AbstractPersistable<Long> {
 
     @OneToMany(mappedBy = "owner")
     private Set<Image> images;
-    
+
     @OneToMany(mappedBy = "sender")
     private List<Comment> comments;
-    
+
     @ManyToMany(mappedBy = "likers")
     private List<Image> likes;
 
@@ -56,16 +56,12 @@ public class Account extends AbstractPersistable<Long> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj.getClass() != Account.class || obj == null) {
+        if (obj == null || obj.getClass() != Account.class) {
             return false;
         }
         Account comparedTo = (Account) obj;
 
-        if (this.getUsername().equals(comparedTo.getUsername())) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.getUsername().equals(comparedTo.getUsername());
     }
 
     public String getUsername() {

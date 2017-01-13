@@ -13,13 +13,13 @@ public class Comment extends AbstractPersistable<Long> {
 
     @ManyToOne
     private Image image;
-    
+
     @ManyToOne
     private Account sender;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date postedOn;
-    
+
     @NotEmpty
     private String content;
 

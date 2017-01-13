@@ -2,6 +2,7 @@ package wadstagram.controller;
 
 import java.io.IOException;
 import java.util.Date;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ import wadstagram.service.ImageService;
 
 @Controller
 @RequestMapping("/image")
-public final class ImageController {
+public class ImageController {
 
     @Autowired
     private ImageService imageService;
@@ -72,6 +73,7 @@ public final class ImageController {
         return "image";
     }
 
+    @Transactional
     @ResponseBody
     @RequestMapping(value = "{id}/data", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImageData(@PathVariable Long id) {
@@ -82,7 +84,7 @@ public final class ImageController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentLength(image.getLength());
         headers.setContentType(MediaType.parseMediaType(image.getType()));
-        return new ResponseEntity<byte[]>(image.getBytes().get(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(image.getBytes().get(), headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}/like", method = RequestMethod.POST)

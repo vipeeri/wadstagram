@@ -134,35 +134,35 @@ ul.polaroids li {
 }
 /*joka toinen*/
 ul.polaroids li:nth-child(even) a {
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(2deg);
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(2deg);
 }
 /*joka kolmas*/
 ul.polaroids li:nth-child(3n) a {
-  -webkit-transform: none;
-  -moz-transform: rotate(5deg);
-  position: relative;
-  top: -5px;
+    -webkit-transform: none;
+    -moz-transform: rotate(5deg);
+    position: relative;
+    top: -5px;
 }
 /*joka viides*/
 ul.polaroids li:nth-child(5n) a {
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(4deg);
-  position: relative;
-  right: 5px;
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(4deg);
+    position: relative;
+    right: 5px;
 }
 /*joka 11s*/
 ul.polaroids li:nth-child(11n) a {
-  position: relative;
-  top: 3px;
-  left: -5px;
+    position: relative;
+    top: 3px;
+    left: -5px;
 }
 /*joka 8s*/
 ul.polaroids li:nth-child(8n) a {
-   -moz-transform: rotate(4deg);
-  position: relative;
-  top: 8px;
-  right: 5px;
+    -moz-transform: rotate(4deg);
+    position: relative;
+    top: 8px;
+    right: 5px;
 }
 
 .form {

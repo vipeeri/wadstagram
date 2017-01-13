@@ -37,7 +37,7 @@ public class ImageControllerTest {
 
     @Autowired
     private CommentRepository commentRepository;
-    
+
     private MockMvc mockMvc;
 
     @Before
@@ -109,7 +109,7 @@ public class ImageControllerTest {
         mockMvc.perform(post("/image/" + image.getId() + "/comment").param("comment", "testcomment")).andExpect(status().is3xxRedirection());
         assertEquals(1, this.imageRepository.findOne(image.getId()).getComments().size());
     }
-    
+
     @Test
     public void likeImageTest() throws Exception {
         String description = UUID.randomUUID().toString().substring(0, 6);

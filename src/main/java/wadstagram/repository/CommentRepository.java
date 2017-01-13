@@ -8,6 +8,6 @@ import wadstagram.domain.Image;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    
+
     public List<Comment> findByImage(Image image);
 }
