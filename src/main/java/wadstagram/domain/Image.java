@@ -53,10 +53,13 @@ public class Image extends AbstractPersistable<Long> {
     @NotEmpty
     private String type;
 
-    private Long length;
+    private Long fileSize;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private ImageBytes bytes;
+    private ImageBytes imageData;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private ImageBytes thumbnailData;
 
     @OneToMany(mappedBy = "image", fetch = FetchType.EAGER)
     private List<Comment> comments;
@@ -67,10 +70,6 @@ public class Image extends AbstractPersistable<Long> {
         } else {
             return new ArrayList<>();
         }
-    }
-
-    public Long getLength() {
-        return length;
     }
 
     public Set<Account> getLikers() {
@@ -89,20 +88,12 @@ public class Image extends AbstractPersistable<Long> {
         return type;
     }
 
-    public ImageBytes getBytes() {
-        return bytes;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setBytes(ImageBytes bytes) {
-        this.bytes = bytes;
     }
 
     public void setComments(List<Comment> comments) {
@@ -113,15 +104,35 @@ public class Image extends AbstractPersistable<Long> {
         this.likers = likers;
     }
 
-    public void setLength(Long length) {
-        this.length = length;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public void setImageData(ImageBytes imageData) {
+        this.imageData = imageData;
+    }
+
+    public ImageBytes getImageData() {
+        return imageData;
+    }
+
+    public ImageBytes getThumbnailData() {
+        return thumbnailData;
+    }
+
+    public void setThumbnailData(ImageBytes thumbnailData) {
+        this.thumbnailData = thumbnailData;
     }
 }

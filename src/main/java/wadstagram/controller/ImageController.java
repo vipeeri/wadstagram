@@ -82,9 +82,23 @@ public class ImageController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentLength(image.getLength());
+        headers.setContentLength(image.getFileSize());
         headers.setContentType(MediaType.parseMediaType(image.getType()));
-        return new ResponseEntity<>(image.getBytes().get(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(image.getImageData().get(), headers, HttpStatus.OK);
+    }
+
+    @Transactional
+    @ResponseBody
+    @RequestMapping(value = "{id}/thumbnaildata", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getThumbnailData(@PathVariable Long id) {
+        Image image = imageService.getImage(id);
+        if (image == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentLength(image.getFileSize());
+        headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(image.getThumbnailData().get(), headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}/like", method = RequestMethod.POST)
@@ -111,7 +125,7 @@ public class ImageController {
         if (description.isEmpty()) {
             return "redirect:/";
         }
-        Image image = imageService.createImage(received, new Image(), new ImageBytes(), description);
+        Image image = imageService.createImage(received, new Image(), new ImageBytes(), new ImageBytes(), description);
         return "redirect:/";
     }
 }

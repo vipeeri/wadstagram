@@ -11,7 +11,7 @@ import wadstagram.domain.Account;
 import wadstagram.repository.AccountRepository;
 
 @Service
-public final class AccountUserDetailsService implements UserDetailsService {
+public class AccountUserDetailsService implements UserDetailsService {
 
     @Autowired
     private AccountRepository accountRepository;

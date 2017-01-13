@@ -1,8 +1,14 @@
 package wadstagram.service;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +24,7 @@ import wadstagram.repository.ImageBytesRepository;
 import wadstagram.repository.ImageRepository;
 
 @Service
-public final class ImageService {
+public class ImageService {
 
     @Autowired
     ImageRepository imageRepository;
@@ -65,13 +71,31 @@ public final class ImageService {
         return this.imageRepository.findAll(pageable);
     }
 
-    public Image createImage(MultipartFile received, Image image, ImageBytes content, String description) throws IOException {
+    public Image createImage(MultipartFile received, Image image, ImageBytes imageData, ImageBytes thumbnailData, String description) throws IOException {
         Account owner = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+
         image.setName(received.getOriginalFilename());
-        image.setLength(received.getSize());
+        image.setFileSize(received.getSize());
         image.setType(received.getContentType());
-        content.setContent(received.getBytes());
-        image.setBytes(imageBytesRepository.save(content));
+
+        BufferedImage imageObject = ImageIO.read(new ByteArrayInputStream(received.getBytes()));
+
+        ByteArrayOutputStream pngBytes = new ByteArrayOutputStream();
+
+        ImageIO.write(imageObject, "png", pngBytes);
+
+        imageData.setContent(pngBytes.toByteArray());
+
+        BufferedImage thumbnailObject = Scalr.resize(imageObject, Scalr.Method.SPEED, 200, 200);
+
+        ByteArrayOutputStream thumbnailBytes = new ByteArrayOutputStream();
+
+        ImageIO.write(thumbnailObject, "png", thumbnailBytes);
+
+        thumbnailData.setContent(thumbnailBytes.toByteArray());
+
+        image.setImageData(imageBytesRepository.save(imageData));
+        image.setThumbnailData(imageBytesRepository.save(thumbnailData));
         image.setCreatedOn(new Date());
         image.setOwner(owner);
         image.setDescription(description);
@@ -79,7 +103,7 @@ public final class ImageService {
     }
 
     public byte[] getImageData(Long id) {
-        return this.getImage(id).getBytes().get();
+        return this.getImage(id).getImageData().get();
     }
 
     public int getHeartAmount(Long id) {
