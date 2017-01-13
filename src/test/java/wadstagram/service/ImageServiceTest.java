@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.UUID;
+import javax.transaction.Transactional;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -99,6 +100,7 @@ public class ImageServiceTest {
         assertNotNull(image);
     }
 
+    @Transactional
     @Test
     public void testGetImageData() throws Exception {
         String description = UUID.randomUUID().toString().substring(0, 6);

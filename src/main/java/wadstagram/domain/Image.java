@@ -55,7 +55,7 @@ public class Image extends AbstractPersistable<Long> {
     
     private Long length;
     
-    @OneToOne
+    @OneToOne(fetch=FetchType.LAZY)
     private ImageBytes bytes;
     
     @OneToMany(mappedBy = "image", fetch=FetchType.EAGER)
