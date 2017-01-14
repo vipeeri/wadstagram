@@ -55,6 +55,8 @@ public class Image extends AbstractPersistable<Long> {
 
     private Long fileSize;
 
+    private Long thumbnailSize;
+    
     @OneToOne(fetch = FetchType.LAZY)
     private ImageBytes imageData;
 
@@ -134,5 +136,13 @@ public class Image extends AbstractPersistable<Long> {
 
     public void setThumbnailData(ImageBytes thumbnailData) {
         this.thumbnailData = thumbnailData;
+    }
+
+    public Long getThumbnailSize() {
+        return thumbnailSize;
+    }
+
+    public void setThumbnailSize(Long thumbnailSize) {
+        this.thumbnailSize = thumbnailSize;
     }
 }

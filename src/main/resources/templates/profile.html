@@ -23,7 +23,7 @@
         <div class="row">
             <ul class="polaroids a">
                 <li th:each="image : ${images}">
-                    <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/thumbnaildata(id=${image.id})}" alt="placeholder" style="width: 200px; height: 200px;"/> </a> 
+                    <a th:href="@{/image/{id}(id=${image.id})}"> <img th:src="@{/image/{id}/thumbnaildata(id=${image.id})}" alt="placeholder"/> </a> 
                 </li>
             </ul>
 

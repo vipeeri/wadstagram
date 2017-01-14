@@ -83,7 +83,7 @@ public class ImageController {
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentLength(image.getFileSize());
-        headers.setContentType(MediaType.parseMediaType(image.getType()));
+        headers.setContentType(MediaType.parseMediaType(MediaType.IMAGE_PNG_VALUE));
         return new ResponseEntity<>(image.getImageData().get(), headers, HttpStatus.OK);
     }
 
@@ -96,8 +96,8 @@ public class ImageController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentLength(image.getFileSize());
-        headers.setContentType(MediaType.IMAGE_PNG);
+        headers.setContentLength(image.getThumbnailSize());
+        headers.setContentType(MediaType.parseMediaType(MediaType.IMAGE_PNG_VALUE));
         return new ResponseEntity<>(image.getThumbnailData().get(), headers, HttpStatus.OK);
     }
 

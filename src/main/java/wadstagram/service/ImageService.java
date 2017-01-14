@@ -75,11 +75,10 @@ public class ImageService {
         Account owner = accountService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
 
         image.setName(received.getOriginalFilename());
-        image.setFileSize(received.getSize());
         image.setType(received.getContentType());
 
         BufferedImage imageObject = ImageIO.read(new ByteArrayInputStream(received.getBytes()));
-
+        
         ByteArrayOutputStream pngBytes = new ByteArrayOutputStream();
 
         ImageIO.write(imageObject, "png", pngBytes);
@@ -94,7 +93,11 @@ public class ImageService {
 
         thumbnailData.setContent(thumbnailBytes.toByteArray());
 
+        image.setFileSize(new Long(pngBytes.toByteArray().length));
+        image.setThumbnailSize(new Long(thumbnailBytes.toByteArray().length));
+        
         image.setImageData(imageBytesRepository.save(imageData));
+        
         image.setThumbnailData(imageBytesRepository.save(thumbnailData));
         image.setCreatedOn(new Date());
         image.setOwner(owner);
